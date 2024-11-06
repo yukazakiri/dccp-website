@@ -2,49 +2,25 @@
 import Menu from "../components/Menu.astro";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
+import HeroCard from "../components/heroCard.astro";
+import AboutUs from "../components/aboutUs.astro";
+import Courses from "../components/Courses.astro";
+import Scholarships from "../components/scholarships.astro";
+import ContactUs from "../components/contactUs.astro";
+import Location from "../components/location.astro";
+import ApplyNowCard from "../components/applyNowCard.astro";
 ---
 
 <Layout title="Data Center College of the Philippines - Baguio City">
 	<Menu />
-	<main class="">
-
-		<div class="landing-page">
-			<h1>Data Center College of the Philippines - Baguio City</h1>
-		</div>
-
-		<div class="introduction-section">
-			PIONEERING IN IT EDUCATION SINCE 1974 Data Center College of the
-			Philippines Baguio City - a haven for knowledge-seekers nestled in
-			the chilly mountains of Baguio City! At DCCP Baguio, you'll find
-			state-of-the-art facilities that cater to a variety of courses and
-			programs, from information technology and business administration to
-			hospitality and tourism management. With modern classrooms,
-			laboratories, and simulation rooms, you'll have all the tools you
-			need to hone your skills and develop your expertise in your chosen
-			field. What sets DCCP Baguio apart from other colleges is its
-			commitment to experiential learning. Here, you won't just be sitting
-			in lectures and taking exams - you'll be actively engaging in
-			real-world scenarios and industry partnerships that will prepare you
-			for the challenges of the workforce. But it's not just about
-			academics and career preparation at DCCP Baguio - there's also a
-			strong emphasis on personal growth and community service. Through
-			various student organizations and outreach programs, you'll have the
-			opportunity to develop your leadership skills and give back to the
-			community. So if you're ready to embark on a journey of learning,
-			growth, and endless possibilities, come join the DCCP Baguio family
-			today!
-		</div>
-
-		<div class="scholarships-section">
-			<h1>Images Here</h1>
-		</div>
-
-		<div class="courses-offered-section">
-			<h1>Coursr</h1>
-		</div>
-
-		<div class="contact-section"></div>
-
+	<main class="flex-1">
+		<HeroCard />
+		<AboutUs />
+		<Courses />	
+		<Scholarships />
+		<ContactUs />
+		<Location />
+		<ApplyNowCard />
 		<Footer />
 	</main>
 </Layout>
