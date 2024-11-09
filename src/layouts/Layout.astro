@@ -16,8 +16,12 @@ import '../assets/main.css';
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
+		<link rel="preconnect" href="https://fonts.googleapis.com">
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+		<link href="https://fonts.googleapis.com/css2?family=Eagle+Lake&family=Lexend+Exa:wght@100..900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+		<link rel='stylesheet'
+    href='https://cdn-uicons.flaticon.com/2.6.0/uicons-regular-rounded/css/uicons-regular-rounded.css'>
 		<title>{title}</title>
-		
 	</head>
 	<body class="flex flex-col min-h-screen">
 		<slot />
@@ -36,8 +40,7 @@ import '../assets/main.css';
 		);
 	}
 	html {
-		font-family: system-ui, sans-serif;
-		background: #13151a;
+		font-family: "Noto Sans", sans-serif;
 	}
 	code {
 		font-family:
@@ -50,4 +53,44 @@ import '../assets/main.css';
 			Courier New,
 			monospace;
 	}
+
+
+
+	.font-cursive {
+		font-family: "Eagle Lake", serif;
+		font-weight: 400;
+		font-style: normal;
+	}
+
+	.font-h {
+		font-family: "Lexend Exa", serif;
+		font-optical-sizing: auto;
+		font-weight: 500;
+		font-style: normal;
+	}
+
+	.font-p {
+		font-family: "Noto Sans", sans-serif;
+		font-weight: 400;
+		font-style: normal;
+	}
 </style>
+
+<script is:inline>
+  const theme = (() => {
+    if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+      return localStorage.getItem("theme");
+    }
+    if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return "dark";
+    }
+    return "light";
+  })();
+
+  if (theme === "light") {
+    document.documentElement.classList.remove("dark");
+  } else {
+    document.documentElement.classList.add("dark");
+  }
+  window.localStorage.setItem("theme", theme);
+</script>
