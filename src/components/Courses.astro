@@ -1,34 +1,34 @@
-<section class="w-full py-12 md:py-24 lg:py-32 bg-blue-50" id="courses">
+<section class="w-full py-12 md:py-24 lg:py-32 " id="courses">
     <div class="container mx-auto px-4 md:px-6">
-        <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12">Our Courses</h2>
+        <h2 class="text-3xl font-bold tracking-tighter sm:text-5xl text-center mb-12 font-cursive title-gradient">Our Courses</h2>
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden course-card information-technology-card">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Bachelor of Science in Information Technology</h3>
-                    <p class="text-gray-600 mb-4">Develop expertise in:</p>
-                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                    <p class="font-bold mb-4">Develop expertise in:</p>
+                    <ul class="list-disc list-inside  mb-4">
                         <li>Web Development</li>
                         <li>Software Engineering</li>
                         <li>Network Administration</li>
                     </ul>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="rounded-lg shadow-md overflow-hidden course-card business-administration-card">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Bachelor of Science in Business Administration</h3>
-                    <p class="text-gray-600 mb-4">Major in Financial Management</p>
-                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                    <p class="font-bold mb-4">Major in Financial Management</p>
+                    <ul class="list-disc list-inside mb-4">
                         <li>Financial Planning</li>
                         <li>Investment Management</li>
                         <li>Business Strategy</li>
                     </ul>
                 </div>
             </div>
-            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden course-card hospitality-management-card">
                 <div class="p-6">
                     <h3 class="text-xl font-bold mb-2">Bachelor of Science in Hospitality Management</h3>
-                    <p class="text-gray-600 mb-4">Specialize in:</p>
-                    <ul class="list-disc list-inside text-gray-600 mb-4">
+                    <p class=" mb-4">Specialize in:</p>
+                    <ul class="list-disc list-inside mb-4">
                         <li>Hotel Operations</li>
                         <li>Restaurant Management</li>
                         <li>Events Planning</li>
@@ -36,18 +36,71 @@
                 </div>
             </div>
         </div>
-        <div class="mt-8 text-center">
+        <div class="mt-12 text-center">
             <h3 class="text-xl font-bold mb-4">Technical-Vocational Courses</h3>
-            <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-                <div class="bg-white p-4 rounded shadow">Computer Systems Servicing NC II</div>
-                <div class="bg-white p-4 rounded shadow">Caregiving NC II</div>
-                <div class="bg-white p-4 rounded shadow">Health Care Services NC II</div>
-                <div class="bg-white p-4 rounded shadow">Cookery NC II</div>
-                <div class="bg-white p-4 rounded shadow">Bread and Pastry Production NC II</div>
-                <div class="bg-white p-4 rounded shadow">Food and Beverages Services NC II</div>
-                <div class="bg-white p-4 rounded shadow">Bartending NC II</div>
-                <div class="bg-white p-4 rounded shadow">Three-Year Diploma in Hotel and Restaurant Technology</div>
+            <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Computer Systems Servicing NC II</div>
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Caregiving NC II</div>
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Health Care Services NC II</div>
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Cookery NC II</div>
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Bread & Pastry Production NC II</div>
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Food & Beverages Services NC II</div>
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Bartending NC II</div>
+                <div class="course-card-mini p-4 rounded-xl flex align-center justify-center shadow">Three-Year Diploma in Hotel & Restaurant Technology</div>
             </div>
         </div>
     </div>
 </section>
+
+<style>
+    #courses {
+        background: rgb(255, 255, 255);
+        /* background-image: linear-gradient(to top, #09203f 0%, #537895 100%); */
+        /* background-image: linear-gradient(to top, #4d4d54 0%, #e3eeff 100%); */
+    }
+
+    .course-card {
+        background-blend-mode: overlay;
+        color: #fff;
+        background-size: cover;
+        border-radius: 12px;
+    }
+
+    .course-card-mini {
+        color: #fff;
+        background: #2e2e9e;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #172285, #000046);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #202228, #232325); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+font-family: "Funnel Display", sans-serif;
+		font-optical-sizing: auto;
+		font-weight: 500;
+		font-style: normal;
+    }
+
+    .business-administration-card { 
+        background-image: url('/images/courses/ba.jpeg');
+        background-color: rgb(10, 134, 59);
+        background-size: cover;
+        background-position: center;
+        background-blend-mode: multiply;
+        color: #fff;
+    }
+
+    .information-technology-card {
+        background-image: url('/images/courses/it.jpeg');
+        background-color: rgb(81 88 115);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+    }
+
+    .hospitality-management-card {
+        background-image: url('/images/courses/hm.jpeg');
+        background-color: rgb(174, 110, 9);
+    background-size: cover;
+    background-position: center;
+    background-blend-mode: multiply;
+    color: #fff;
+    }
+</style>
