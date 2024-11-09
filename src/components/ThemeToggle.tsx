@@ -26,7 +26,6 @@ const ThemeToggle = () => {
   if(theme === "light"){
     return (
       <div
-        aria-label="Toggle Theme"
         onClick={toggleTheme}
         className="toggle-theme fixed bottom-3 left-3 z-50"
       >
