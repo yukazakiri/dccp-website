@@ -29,7 +29,8 @@ const ThemeToggle = () => {
         onClick={toggleTheme}
         className="toggle-theme fixed bottom-3 left-3 z-50"
       >
-      <i className="fi fi-rr-moon text-3xl font-bold text-gray-700"></i>
+      <i className="fi fi-rr-moon-stars text-xl font-500 text-blue-300"></i>
+      
       </button>
     );
   }
@@ -39,7 +40,7 @@ const ThemeToggle = () => {
       onClick={toggleTheme}
       className="toggle-theme fixed bottom-3 left-3 z-50"
     >
-    <i className="fi fi-rr-brightness text-3xl font-bold text-orange-500"></i>
+    <i className="fi fi-rr-brightness text-xl font-bold text-orange-300"></i>
      
     </button>
   );
