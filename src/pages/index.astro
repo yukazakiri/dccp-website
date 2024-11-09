@@ -10,7 +10,6 @@ import Scholarships from "../components/scholarships.astro";
 import ContactUs from "../components/contactUs.astro";
 import Location from "../components/location.astro";
 import ApplyNowCard from "../components/applyNowCard.astro";
-import ThemeToggle from "../components/ThemeToggle";
 ---
 
 <Layout title="Data Center College of the Philippines - Baguio City">
@@ -24,7 +23,7 @@ import ThemeToggle from "../components/ThemeToggle";
 		<Location />
 		<ApplyNowCard />
 		<Footer />
-		<ThemeToggle client:load />	
+		<!-- <ThemeToggle client:load />	 -->
 		<InquireNow />
 		</main>
 </Layout>
@@ -38,7 +37,6 @@ import ThemeToggle from "../components/ThemeToggle";
 		display: flex;
 		justify-content: center;
 		align-items: center;
-		height: 100vh;
 		width: 100%;
 		background-image: url("/images/landing-page-background.jpg");
 		background-size: cover;
