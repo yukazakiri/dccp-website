@@ -118,7 +118,7 @@ npm run preview
 ├── src/
 │   ├── components/
 │   │   ├── Menu.astro
-│   │   ├── heroCard.astro
+│   │   ├── HeroCard.astro
 │   │   ├── aboutUs.astro
 │   │   ├── Courses.astro
 │   │   ├── scholarships.astro
