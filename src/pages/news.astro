@@ -4,45 +4,32 @@ import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
 import Block01Navigation from "../components/kokonutui/block-01-nav";
 
-// Sample news data - In a real application, this would come from a CMS or database
-const newsItems = [
-    {
-        id: 1,
-        title: "Enrollment Now Open for Academic Year 2024-2025",
-        category: "Announcement",
-        date: "2024-01-15",
-        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=Enrollment+2024",
-        excerpt: "DCCP is now accepting applications for the upcoming academic year. Early bird discounts available until March 31st.",
-        featured: true
-    },
-    {
-        id: 2,
-        title: "DCCP Students Win National IT Competition",
-        category: "Achievement",
-        date: "2024-01-10",
-        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=IT+Competition",
-        excerpt: "Our students secured first place in the National IT Innovation Challenge, showcasing outstanding technical skills and creativity.",
-        featured: true
-    },
-    {
-        id: 3,
-        title: "New Computer Laboratory Opening Ceremony",
-        category: "Event",
-        date: "2024-01-05",
-        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=New+Lab",
-        excerpt: "State-of-the-art computer laboratory equipped with the latest technology to be inaugurated next week.",
-        featured: false
-    },
-    {
-        id: 4,
-        title: "Industry Partnership with Leading Tech Companies",
-        category: "Partnership",
-        date: "2024-01-03",
-        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=Industry+Partnership",
-        excerpt: "DCCP partners with major tech companies to provide internship opportunities for students.",
-        featured: false
-    }
-];
+// Fetch Facebook posts
+let facebookPosts = [];
+try {
+  const response = await fetch('http://localhost:4321/api/facebook-posts');
+  const data = await response.json();
+  facebookPosts = data.posts || [];
+} catch (error) {
+  console.error('Error fetching Facebook posts:', error);
+}
+
+// Convert Facebook posts to news items format
+const fbNewsItems = facebookPosts.map((post, index) => ({
+  id: `fb-${index}`,
+  title: post.content?.split('\n')[0] || 'Facebook Update',
+  category: 'Social Media Update',
+  date: post.date,
+  image: post.imageUrl || "https://placehold.co/600x400/2563eb/FFFFFF/png?text=DCCP+Update",
+  excerpt: post.content || '',
+  featured: index < 2,
+  fbLink: post.permalink,
+  markdown: post.markdown
+}));
+
+// Combine with existing news items if needed
+const newsItems = [...fbNewsItems];
+
 ---
 
 <Layout title="News & Announcements - Data Center College of the Philippines">
@@ -89,7 +76,7 @@ const newsItems = [
                                     {item.title}
                                 </h3>
                                 <p class="text-gray-600">{item.excerpt}</p>
-                                <a href={`/news/${item.id}`} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                <a href={item.fbLink} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
                                     Read more
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -127,7 +114,7 @@ const newsItems = [
                                     {item.title}
                                 </h3>
                                 <p class="text-gray-600 text-sm">{item.excerpt}</p>
-                                <a href={`/news/${item.id}`} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                <a href={item.fbLink} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
                                     Read more
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
