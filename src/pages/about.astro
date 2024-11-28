@@ -2,40 +2,50 @@
 import Layout from "../layouts/Layout.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+// Add intersection observer for animations
+const animationClass = "opacity-0 translate-y-8";
 ---
 
 <Layout title="About Us - Data Center College of the Philippines">
-    <Menu />
-    <main class="flex-1">
-        <!-- Hero Section -->
-        <section class="w-full py-12 md:py-24 lg:py-32 bg-gradient-to-br from-blue-300 via-blue-50 to-white">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="flex flex-col items-center space-y-4 text-center">
-                    <h1 class="text-3xl font-bold tracking-tighter sm:text-5xl text-slate-800">Our Story</h1>
-                    <p class="max-w-[900px] text-slate-600 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+    <Block01Navigation client:only="react" />
+    <main class="flex-1 overflow-hidden">
+        <!-- Hero Section with animated gradient -->
+        <section class="w-full py-16 md:py-28 lg:py-36 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-blue-300 to-blue-300  animate-gradient"></div>
+            <div class="absolute inset-0 bg-[url('/noise.png')] opacity-20"></div>
+            <div class="container mx-auto px-4 md:px-6 relative">
+                <div class="flex flex-col items-center space-y-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white [text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)] animate-fade-in">
+                        Our Story
+                    </h1>
+                    <p class="max-w-[900px] text-white/90 text-lg md:text-xl/relaxed lg:text-2xl/relaxed animate-fade-in-delay">
                         Pioneering IT Education Since 1974
                     </p>
                 </div>
             </div>
         </section>
 
-        <!-- History Section -->
-        <section class="w-full py-12 md:py-24 bg-white">
+        <!-- History Section with parallax scroll -->
+        <section class="w-full py-16 md:py-24 bg-gradient-to-b from-blue-300 to-white">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="grid gap-12 lg:grid-cols-2 items-center">
-                    <div class="space-y-4">
-                        <h2 class="text-3xl font-bold tracking-tighter text-slate-800">Our Legacy</h2>
-                        <p class="text-slate-600 md:text-lg">
+                    <div class="space-y-6 animate-slide-in-left">
+                        <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-slate-800 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+                            Our Legacy
+                        </h2>
+                        <p class="text-slate-600 md:text-lg leading-relaxed">
                             Data Center College of the Philippines Baguio City has been a beacon of educational excellence in the heart of the Summer Capital. For nearly five decades, we've been shaping the future of IT education, adapting and evolving with the rapid changes in technology.
                         </p>
-                        <p class="text-slate-600 md:text-lg">
+                        <p class="text-slate-600 md:text-lg leading-relaxed">
                             Our journey began with a vision to provide quality education that bridges the gap between academic learning and industry demands. Today, we stand proud as one of the leading institutions in technology education in Northern Luzon.
                         </p>
                     </div>
-                    <div class="relative">
+                    <div class="relative group animate-slide-in-right">
+                        <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl transform rotate-2 group-hover:rotate-1 transition-transform duration-300"></div>
                         <img
                             alt="DCCP Baguio Campus"
-                            class="w-full rounded-xl object-cover object-center aspect-[4/3] shadow-xl"
+                            class="relative w-full rounded-xl object-cover object-center aspect-[4/3] shadow-xl transform group-hover:scale-[1.02] transition-transform duration-300"
                             src="https://placehold.co/600x400"
                         />
                     </div>
@@ -43,32 +53,40 @@ import Footer from "../components/Footer.astro";
             </div>
         </section>
 
-        <!-- Mission & Vision Section -->
-        <section class="w-full py-12 md:py-24 bg-gradient-to-br from-white via-blue-50 to-blue-300">
+        <!-- Mission & Vision Section with hover effects -->
+        <section class="w-full py-16 md:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50">
             <div class="container mx-auto px-4 md:px-6">
                 <div class="grid gap-8 md:grid-cols-2">
                     <!-- Mission -->
-                    <div class="bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-lg">
-                        <div class="flex flex-col items-center text-center space-y-4">
-                            <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
-                            </svg>
-                            <h3 class="text-2xl font-bold text-slate-800">Our Mission</h3>
-                            <p class="text-slate-600">
-                                To provide quality education that empowers students with the knowledge, skills, and values needed to excel in the digital age. We are committed to fostering innovation, critical thinking, and professional excellence in every student.
-                            </p>
+                    <div class="transform hover:-translate-y-2 transition-all duration-300">
+                        <div class="bg-white/90 backdrop-blur-lg rounded-xl p-8 shadow-lg border border-blue-100 h-full animate-slide-up">
+                            <div class="flex flex-col items-center text-center space-y-6">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-blue-500 to-purple-500 flex items-center justify-center p-4 shadow-lg">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">Our Mission</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    To provide quality education that empowers students with the knowledge, skills, and values needed to excel in the digital age. We are committed to fostering innovation, critical thinking, and professional excellence in every student.
+                                </p>
+                            </div>
                         </div>
                     </div>
                     <!-- Vision -->
-                    <div class="bg-white/80 backdrop-blur-sm rounded-lg p-8 shadow-lg">
-                        <div class="flex flex-col items-center text-center space-y-4">
-                            <svg class="w-12 h-12 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
-                            </svg>
-                            <h3 class="text-2xl font-bold text-slate-800">Our Vision</h3>
-                            <p class="text-slate-600">
-                                To be the leading institution in technology and business education in Northern Luzon, recognized for producing competent, innovative, and socially responsible professionals who contribute to national development.
-                            </p>
+                    <div class="transform hover:-translate-y-2 transition-all duration-300">
+                        <div class="bg-white/90 backdrop-blur-lg rounded-xl p-8 shadow-lg border border-purple-100 h-full animate-slide-up">
+                            <div class="flex flex-col items-center text-center space-y-6">
+                                <div class="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500 to-blue-500 flex items-center justify-center p-4 shadow-lg">
+                                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 4a2 2 0 114 0v1a1 1 0 001 1h3a1 1 0 011 1v3a1 1 0 01-1 1h-1a2 2 0 100 4h1a1 1 0 011 1v3a1 1 0 01-1 1h-3a1 1 0 01-1-1v-1a2 2 0 10-4 0v1a1 1 0 01-1 1H7a1 1 0 01-1-1v-3a1 1 0 00-1-1H4a2 2 0 110-4h1a1 1 0 001-1V7a1 1 0 011-1h3a1 1 0 001-1V4z"/>
+                                    </svg>
+                                </div>
+                                <h3 class="text-2xl font-bold bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">Our Vision</h3>
+                                <p class="text-slate-600 leading-relaxed">
+                                    To be the leading institution in technology and business education in Northern Luzon, recognized for producing competent, innovative, and socially responsible professionals who contribute to national development.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -83,7 +101,7 @@ import Footer from "../components/Footer.astro";
                     <div class="flex flex-col items-center text-center space-y-3">
                         <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
                             <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0zm0 0v-8"/>
                             </svg>
                         </div>
                         <h3 class="font-bold text-slate-800">Excellence</h3>
@@ -137,3 +155,75 @@ import Footer from "../components/Footer.astro";
     </main>
     <Footer />
 </Layout>
+
+<style>
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    .animate-fade-in-delay {
+        animation: fadeIn 1s ease-out 0.3s forwards;
+        opacity: 0;
+    }
+
+    .animate-slide-in-left {
+        animation: slideInLeft 1s ease-out forwards;
+    }
+
+    .animate-slide-in-right {
+        animation: slideInRight 1s ease-out forwards;
+    }
+
+    .animate-slide-up {
+        animation: slideUp 0.8s ease-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(100px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>

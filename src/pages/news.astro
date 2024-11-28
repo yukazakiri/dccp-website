@@ -1,1 +1,208 @@
-<h1>News Page</h1>
+---
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+
+// Sample news data - In a real application, this would come from a CMS or database
+const newsItems = [
+    {
+        id: 1,
+        title: "Enrollment Now Open for Academic Year 2024-2025",
+        category: "Announcement",
+        date: "2024-01-15",
+        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=Enrollment+2024",
+        excerpt: "DCCP is now accepting applications for the upcoming academic year. Early bird discounts available until March 31st.",
+        featured: true
+    },
+    {
+        id: 2,
+        title: "DCCP Students Win National IT Competition",
+        category: "Achievement",
+        date: "2024-01-10",
+        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=IT+Competition",
+        excerpt: "Our students secured first place in the National IT Innovation Challenge, showcasing outstanding technical skills and creativity.",
+        featured: true
+    },
+    {
+        id: 3,
+        title: "New Computer Laboratory Opening Ceremony",
+        category: "Event",
+        date: "2024-01-05",
+        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=New+Lab",
+        excerpt: "State-of-the-art computer laboratory equipped with the latest technology to be inaugurated next week.",
+        featured: false
+    },
+    {
+        id: 4,
+        title: "Industry Partnership with Leading Tech Companies",
+        category: "Partnership",
+        date: "2024-01-03",
+        image: "https://placehold.co/600x400/2563eb/FFFFFF/png?text=Industry+Partnership",
+        excerpt: "DCCP partners with major tech companies to provide internship opportunities for students.",
+        featured: false
+    }
+];
+---
+
+<Layout title="News & Announcements - Data Center College of the Philippines">
+    <Block01Navigation client:only="react" />
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="w-full py-16 md:py-24 lg:py-32 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-blue-300 to-blue-300 animate-gradient"></div>
+            <div class="absolute inset-0 bg-[url('/noise.png')] opacity-20"></div>
+            <div class="container mx-auto px-4 md:px-6 relative">
+                <div class="flex flex-col items-center space-y-4 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white [text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)]">
+                        News & Announcements
+                    </h1>
+                    <p class="max-w-[700px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                        Stay updated with the latest news, events, and announcements from DCCP
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured News Section -->
+        <section class="w-full py-12 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-8">Featured News</h2>
+                <div class="grid gap-8 md:grid-cols-2">
+                    {newsItems.filter(item => item.featured).map(item => (
+                        <div class="group relative overflow-hidden rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 bg-white">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                        {item.category}
+                                    </span>
+                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p class="text-gray-600">{item.excerpt}</p>
+                                <a href={`/news/${item.id}`} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Recent News Section -->
+        <section class="w-full py-12 bg-gray-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-8">Recent News</h2>
+                <div class="grid gap-8 md:grid-cols-3">
+                    {newsItems.filter(item => !item.featured).map(item => (
+                        <div class="group bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                            <div class="aspect-video w-full overflow-hidden rounded-t-lg">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                        {item.category}
+                                    </span>
+                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                </div>
+                                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p class="text-gray-600 text-sm">{item.excerpt}</p>
+                                <a href={`/news/${item.id}`} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <!-- Load More Button -->
+                <div class="flex justify-center mt-12">
+                    <button class="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium text-white shadow-lg transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700">
+                        Load More News
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Newsletter Section -->
+        <section class="w-full py-12 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="max-w-2xl mx-auto text-center">
+                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Stay Updated</h2>
+                    <p class="text-gray-600 mb-6">Subscribe to our newsletter to receive the latest news and updates directly in your inbox.</p>
+                    <form class="flex gap-4 max-w-md mx-auto">
+                        <input 
+                            type="email" 
+                            placeholder="Enter your email"
+                            class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                            required
+                        />
+                        <button 
+                            type="submit"
+                            class="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white shadow-lg transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700"
+                        >
+                            Subscribe
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+</style>
+
+<script>
+    // Add smooth scrolling behavior
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Newsletter form submission
+    const form = document.querySelector('form');
+    form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you for subscribing to our newsletter!');
+        form.reset();
+    });
+</script>
