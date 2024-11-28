@@ -1,0 +1,72 @@
+---
+import * as Icons from 'lucide-react';
+import ProgramCard from './ProgramCard.astro';
+import { programsData } from '../data/programs';
+---
+
+<div class="bg-gradient-to-b from-white to-gray-50">
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-blue-600 text-white py-24">
+        <div class="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center">
+                <h1 class="text-5xl font-bold mb-6">Academic Programs</h1>
+                <p class="text-xl text-blue-100 max-w-2xl mx-auto">Discover your path to success with our comprehensive educational programs</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24">
+        <!-- Program Categories -->
+        <div class="grid gap-16">
+            {programsData.map((category) => {
+                const CategoryIcon = Icons[category.icon];
+                return (
+                    <section class="relative">
+                        <div class="flex items-center gap-4 mb-8">
+                            <div class="flex items-center justify-center w-12 h-12 rounded-full bg-blue-100">
+                                {CategoryIcon && <CategoryIcon className="w-6 h-6 text-blue-600" />}
+                            </div>
+                            <h2 class="text-3xl font-bold text-gray-900">{category.title}</h2>
+                        </div>
+                        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                            {category.programs.map((program) => (
+                                <ProgramCard
+                                    title={program.title}
+                                    description={program.description}
+                                    icon={program.icon}
+                                    features={program.features}
+                                    color={program.color}
+                                />
+                            ))}
+                        </div>
+                    </section>
+                );
+            })}
+        </div>
+
+        <!-- Contact Section -->
+        <section class="mt-20 text-center">
+            <div class="max-w-3xl mx-auto">
+                <h2 class="text-3xl font-bold mb-6">Ready to Start Your Journey?</h2>
+                <p class="text-gray-600 mb-8">
+                    Contact our admissions office to learn more about our programs and start your application process.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                    <a
+                        href="/contact"
+                        class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 transition-colors duration-300"
+                    >
+                        Contact Admissions
+                    </a>
+                    <a
+                        href="/apply"
+                        class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-600 bg-blue-100 hover:bg-blue-200 transition-colors duration-300"
+                    >
+                        Apply Now
+                    </a>
+                </div>
+            </div>
+        </section>
+    </div>
+</div>

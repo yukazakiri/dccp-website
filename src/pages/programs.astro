@@ -1,0 +1,12 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Block01Navigation from '../components/kokonutui/block-01-nav';
+import ProgramsOffered from '../components/ProgramsOffered.astro';
+---
+
+<Layout title="Programs Offered - DCCP Baguio">
+    <Block01Navigation client:only="react" />
+    <div class="pt-16">
+        <ProgramsOffered />
+    </div>
+</Layout>

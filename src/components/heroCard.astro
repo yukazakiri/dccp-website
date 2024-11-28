@@ -1,33 +1,67 @@
-<section class="flex items-center bg-gradient-to-b from-white via-blue-50 to-blue-300 py-32 md:py-40 lg:py-35">
+---
+import { Image } from 'astro:assets';
+---
+
+<section class="relative min-h-screen pt-20 pb-16 flex items-center bg-gradient-to-b from-white via-blue-50 to-blue-300">
     <div class="container mx-auto px-4 md:px-6">
-        <div class="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-            <div class="flex flex-col justify-center space-y-4">
-                <div class="space-y-2">
-                    <h1 class="tracking-wide text-3xl font-bold tracking-tighter text-blue-900 sm:text-5xl xl:text-6xl/none">
-                        PIONEERING IN IT EDUCATION SINCE 1974
+        <div class="grid gap-8 lg:grid-cols-2 lg:gap-12">
+            {/* Text Content */}
+            <div class="flex flex-col justify-center space-y-6 text-center lg:text-left">
+                <div class="space-y-4">
+                    <h1 class="text-4xl font-bold tracking-tighter text-blue-900 sm:text-5xl md:text-6xl">
+                        PIONEERING IN IT EDUCATION
+                        <span class="block text-2xl sm:text-3xl md:text-4xl mt-2 text-blue-700">SINCE 1974</span>
                     </h1>
-                    <p class="max-w-[600px] text-blue-800 md:text-xl">
+                    <p class="text-lg sm:text-xl text-blue-800 max-w-[600px] mx-auto lg:mx-0">
                         Data Center College of the Philippines Baguio City - a haven for knowledge-seekers nestled in the chilly mountains of Baguio City!
                     </p>
                 </div>
-                <div class="flex flex-col gap-2 min-[400px]:flex-row">
-                    <a href="#courses" class="inline-flex items-center justify-center rounded-md text-sm font-medium bg-blue-900 text-white hover:bg-blue-800 h-10 px-4 py-2">
+                <div class="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                    <a 
+                        href="#courses" 
+                        class="inline-flex items-center justify-center rounded-full text-base font-medium bg-blue-900 text-white hover:bg-blue-800 px-6 py-3 transition-colors"
+                    >
                         Explore Programs
                     </a>
-                    <a href="#contact" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-blue-900 text-blue-900 hover:bg-blue-100/10 h-10 px-4 py-2">
+                    <a 
+                        href="#contact" 
+                        class="inline-flex items-center justify-center rounded-full text-base font-medium border-2 border-blue-900 text-blue-900 hover:bg-blue-100 px-6 py-3 transition-colors"
+                    >
                         Contact Us
                     </a>
                 </div>
             </div>
-            <div class="relative w-[500px] h-[500px] mx-auto">
-                <img
-                    alt="DCCP Baguio Campus"
-                    class="w-full h-full rounded-xl object-cover object-center"
-                    src="/images/dccp-background.jpg"
-                />
+
+            {/* Image Container */}
+            <div class="relative mx-auto max-w-[500px] lg:max-w-none">
+                <div class="relative aspect-[4/3] w-full">
+                    <img
+                        alt="DCCP Baguio Campus"
+                        class="w-full h-full rounded-2xl object-cover object-center shadow-xl"
+                        src="/images/dccp-background.jpg"
+                    />
                 <div class="absolute top-[-50px] left-[-50px] w-[200px] h-[200px] rounded-xl bg-amber-200/30"></div>
                 <div class="absolute bottom-[-30px] right-[-30px] w-[150px] h-[150px] rounded-xl bg-blue-300/30"></div>
             </div>
         </div>
     </div>
+
+    {/* Background Decorative Elements */}
+    <div class="absolute inset-0 -z-10 overflow-hidden">
+        <div class="absolute top-1/4 left-0 w-72 h-72 bg-blue-200 rounded-full filter blur-3xl opacity-20"></div>
+        <div class="absolute bottom-1/4 right-0 w-72 h-72 bg-amber-200 rounded-full filter blur-3xl opacity-20"></div>
+    </div>
 </section>
+
+<style>
+    section {
+        position: relative;
+        overflow: hidden;
+    }
+
+    @media (max-width: 640px) {
+        section {
+            padding-top: 6rem;
+        }
+    }
+</style>
