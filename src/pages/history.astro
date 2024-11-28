@@ -1,0 +1,183 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+---
+
+<Layout title="Our History - Data Center College of the Philippines">
+    <Block01Navigation client:only="react" />
+    <main class="bg-slate-50">
+        <!-- Hero Section -->
+        <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
+            <div class="absolute inset-0">
+                <div class="absolute inset-0 bg-gradient-to-br from-blue-900/90 to-slate-900/90 mix-blend-multiply"></div>
+                <img src="https://placehold.co/1920x1080" alt="DCCP Historical Photo" class="w-full h-full object-cover" />
+            </div>
+            <div class="relative z-10 container mx-auto px-4">
+                <div class="max-w-4xl mx-auto text-center">
+                    <h1 class="animate-title-reveal inline-flex flex-col text-white">
+                        <span class="text-sm md:text-base font-medium tracking-wider uppercase mb-4">Est. 1970</span>
+                        <span class="text-4xl md:text-7xl font-bold tracking-tight leading-none mb-6">Pioneering</span>
+                        <span class="text-4xl md:text-7xl font-bold tracking-tight leading-none bg-gradient-to-r from-blue-400 to-purple-400 text-transparent bg-clip-text">
+                            Digital Education
+                        </span>
+                    </h1>
+                </div>
+            </div>
+            <div class="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/80">
+                <span class="text-sm tracking-wider uppercase">Scroll to Explore</span>
+                <div class="animate-bounce-slow">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                    </svg>
+                </div>
+            </div>
+        </section>
+
+        <!-- Journey Section -->
+        <section class="relative py-24 md:py-32">
+            <div class="container mx-auto px-4">
+                <div class="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+                    <div class="space-y-8">
+                        <span class="inline-block text-sm tracking-wider text-blue-600 uppercase font-medium">Our Beginning</span>
+                        <h2 class="text-3xl md:text-5xl font-bold text-slate-900">From Vision to Reality</h2>
+                        <p class="text-lg text-slate-600 leading-relaxed">
+                            Data Center College of the Philippines (DCCP) traces its roots back to 1970 when it began as a small institution offering short courses in Computer Programming and Software Development in Davao City.
+                        </p>
+                        <div class="relative group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+                            <div class="absolute inset-0 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-lg opacity-50 group-hover:opacity-75 transition-opacity"></div>
+                            <div class="relative bg-white rounded-2xl p-6 border border-slate-200">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center">
+                                        <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="font-bold text-slate-900">Pioneer in IT Education</h3>
+                                        <p class="text-slate-600">First institution to offer specialized computer courses in the region</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative group">
+                        <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl blur-lg opacity-20 group-hover:opacity-40 transition-opacity"></div>
+                        <img src="https://placehold.co/600x800" alt="Historical Photo" class="relative w-full h-[600px] object-cover rounded-2xl" />
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Milestones Grid -->
+        <section class="relative py-24 md:py-32 bg-slate-900">
+            <div class="absolute inset-0 bg-[url('/noise.png')] opacity-20"></div>
+            <div class="container mx-auto px-4">
+                <div class="max-w-2xl mx-auto text-center mb-16 md:mb-24">
+                    <span class="inline-block text-sm tracking-wider text-blue-400 uppercase font-medium mb-4">Timeline</span>
+                    <h2 class="text-3xl md:text-5xl font-bold text-white mb-6">Our Journey Through Time</h2>
+                    <p class="text-lg text-slate-400">Witness the evolution of DCCP from its humble beginnings to becoming a leading institution in technology education.</p>
+                </div>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- 1970s Card -->
+                    <div class="group relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="relative h-full bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:-translate-y-1 transition-all duration-300">
+                            <div class="text-7xl font-bold text-blue-400/20 mb-4">70s</div>
+                            <h3 class="text-xl font-bold text-white mb-4">The Foundation</h3>
+                            <p class="text-slate-400">Established in Davao City, offering pioneering computer programming courses and laying the groundwork for future expansion.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1985 Card -->
+                    <div class="group relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="relative h-full bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:-translate-y-1 transition-all duration-300">
+                            <div class="text-7xl font-bold text-blue-400/20 mb-4">85</div>
+                            <h3 class="text-xl font-bold text-white mb-4">Baguio Expansion</h3>
+                            <p class="text-slate-400">Extended our reach to the Summer Capital, bringing quality IT education to Northern Luzon.</p>
+                        </div>
+                    </div>
+
+                    <!-- 1990s Card -->
+                    <div class="group relative">
+                        <div class="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl blur-lg opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="relative h-full bg-slate-800/50 backdrop-blur-sm rounded-2xl p-8 border border-slate-700 hover:-translate-y-1 transition-all duration-300">
+                            <div class="text-7xl font-bold text-blue-400/20 mb-4">90s</div>
+                            <h3 class="text-xl font-bold text-white mb-4">Regional Growth</h3>
+                            <p class="text-slate-400">Established new branches in Laoag, Vigan, and Abra, creating a network of excellence in education.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Present Day Section -->
+        <section class="relative py-24 md:py-32 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-slate-50 to-blue-50"></div>
+            <div class="container mx-auto px-4 relative">
+                <div class="max-w-5xl mx-auto">
+                    <div class="grid md:grid-cols-2 gap-12 md:gap-24 items-center">
+                        <div class="space-y-8">
+                            <span class="inline-block text-sm tracking-wider text-blue-600 uppercase font-medium">Present Day</span>
+                            <h2 class="text-3xl md:text-5xl font-bold text-slate-900">DCCP Today</h2>
+                            <p class="text-lg text-slate-600 leading-relaxed">
+                                Today, DCCP stands as a beacon of technological education, continuously adapting to industry demands and fostering innovation. Our institution has grown from a small computer programming school to a comprehensive college offering diverse programs.
+                            </p>
+                            <div class="grid grid-cols-2 gap-6">
+                                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                                    <div class="text-3xl font-bold text-blue-600 mb-2">50+</div>
+                                    <div class="text-slate-600">Years of Excellence</div>
+                                </div>
+                                <div class="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-shadow">
+                                    <div class="text-3xl font-bold text-blue-600 mb-2">5+</div>
+                                    <div class="text-slate-600">Campus Locations</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <div class="absolute -inset-4 bg-gradient-to-r from-blue-500 to-purple-500 rounded-2xl rotate-6 blur-lg opacity-20"></div>
+                            <img src="https://placehold.co/600x400" alt="DCCP Modern Campus" class="relative w-full rounded-2xl shadow-2xl" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    @keyframes title-reveal {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-title-reveal > span {
+        opacity: 0;
+        animation: title-reveal 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+
+    .animate-title-reveal > span:nth-child(2) {
+        animation-delay: 0.2s;
+    }
+
+    .animate-title-reveal > span:nth-child(3) {
+        animation-delay: 0.4s;
+    }
+
+    @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
+    }
+
+    .animate-bounce-slow {
+        animation: bounce-slow 2s ease-in-out infinite;
+    }
+</style>

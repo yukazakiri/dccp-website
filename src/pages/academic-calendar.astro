@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Block01Navigation from '../components/kokonutui/block-01-nav';
+import SemesterSection from '../components/calendar/SemesterSection.astro';
+import { academicCalendar } from '../data/academic-calendar';
+
+const categoryFilters = [
+  { id: 'all', label: 'All Events' },
+  { id: 'academic', label: 'Academic' },
+  { id: 'exam', label: 'Examinations' },
+  { id: 'event', label: 'Events' },
+  { id: 'enrollment', label: 'Enrollment' },
+  { id: 'holiday', label: 'Holidays' }
+];
+---
+
+<Layout title="Academic Calendar - DCCP Baguio">
+  <Block01Navigation client:only="react" />
+  
+  <div class="min-h-screen bg-gradient-to-b from-white to-gray-50">
+    <!-- Hero Section -->
+    <div class="relative overflow-hidden bg-blue-600 text-white py-16">
+      <div class="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center">
+          <h1 class="text-4xl font-bold mb-4">Academic Calendar</h1>
+          <p class="text-xl text-blue-100">Academic Year {academicCalendar.year}</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <!-- Category Filters -->
+      <div class="mb-8">
+        <div class="flex flex-wrap gap-2">
+          {categoryFilters.map((filter) => (
+            <button
+              class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
+                     hover:bg-blue-100 hover:text-blue-800
+                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
+                     data-[active=true]:bg-blue-600 data-[active=true]:text-white
+                     data-[active=false]:bg-gray-100 data-[active=false]:text-gray-800"
+              data-active={filter.id === 'all'}
+            >
+              {filter.label}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      <!-- Legend -->
+      <div class="mb-8 p-4 bg-white rounded-lg shadow-sm">
+        <h3 class="text-lg font-semibold mb-3">Event Categories</h3>
+        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+          <div class="flex items-center gap-2">
+            <div class="w-4 h-4 rounded bg-blue-100 border border-blue-200"></div>
+            <span class="text-sm">Academic</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-4 h-4 rounded bg-purple-100 border border-purple-200"></div>
+            <span class="text-sm">Examinations</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-4 h-4 rounded bg-green-100 border border-green-200"></div>
+            <span class="text-sm">Events</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-4 h-4 rounded bg-orange-100 border border-orange-200"></div>
+            <span class="text-sm">Enrollment</span>
+          </div>
+          <div class="flex items-center gap-2">
+            <div class="w-4 h-4 rounded bg-red-100 border border-red-200"></div>
+            <span class="text-sm">Holidays</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Calendar Sections -->
+      <div class="space-y-12">
+        {academicCalendar.semesters.map((semester) => (
+          <SemesterSection semester={semester} />
+        ))}
+      </div>
+
+      <!-- Download Section -->
+      <div class="mt-16 text-center">
+        <h3 class="text-2xl font-bold mb-4">Need a copy of the calendar?</h3>
+        <p class="text-gray-600 mb-6">Download the academic calendar for offline reference</p>
+        <div class="flex justify-center gap-4">
+          <a
+            href="#"
+            class="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
+          >
+            <i class="fi fi-rr-download mr-2"></i>
+            Download PDF
+          </a>
+          <a
+            href="#"
+            class="inline-flex items-center px-6 py-3 rounded-lg bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors duration-200"
+          >
+            <i class="fi fi-rr-calendar mr-2"></i>
+            Add to Calendar
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // Filter functionality
+    const filterButtons = document.querySelectorAll('button[data-active]');
+    const eventCards = document.querySelectorAll('[data-category]');
+
+    filterButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        // Update active state of buttons
+        filterButtons.forEach(btn => btn.setAttribute('data-active', 'false'));
+        button.setAttribute('data-active', 'true');
+
+        // Filter events
+        const category = button.getAttribute('data-category');
+        if (category === 'all') {
+          eventCards.forEach(card => card.style.display = 'block');
+        } else {
+          eventCards.forEach(card => {
+            card.style.display = card.getAttribute('data-category') === category
+              ? 'block'
+              : 'none';
+          });
+        }
+      });
+    });
+  </script>
+</Layout>

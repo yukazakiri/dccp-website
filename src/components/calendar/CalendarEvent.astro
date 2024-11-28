@@ -1,0 +1,50 @@
+---
+import type { CalendarEvent } from '../../data/academic-calendar';
+import { format, parseISO } from 'date-fns';
+
+interface Props {
+  event: CalendarEvent;
+}
+
+const { event } = Astro.props;
+
+const categoryColors = {
+  academic: 'bg-blue-100 text-blue-800 border-blue-200',
+  holiday: 'bg-red-100 text-red-800 border-red-200',
+  exam: 'bg-purple-100 text-purple-800 border-purple-200',
+  event: 'bg-green-100 text-green-800 border-green-200',
+  enrollment: 'bg-orange-100 text-orange-800 border-orange-200'
+};
+
+const formatDate = (dateStr: string) => {
+  const date = parseISO(dateStr);
+  return format(date, 'MMM dd, yyyy');
+};
+---
+
+<div 
+  class={`calendar-event p-4 rounded-lg border ${categoryColors[event.category]} hover:shadow-md transition-shadow duration-200`}
+  data-category={event.category}
+>
+  <div class="flex justify-between items-start mb-2">
+    <h3 class="font-semibold">{event.title}</h3>
+    <span class="text-sm px-2 py-1 rounded-full bg-white/50">
+      {event.category}
+    </span>
+  </div>
+  {event.description && (
+    <p class="text-sm mb-2 opacity-80">{event.description}</p>
+  )}
+  <div class="text-sm">
+    {event.endDate ? (
+      <span>{formatDate(event.startDate)} - {formatDate(event.endDate)}</span>
+    ) : (
+      <span>{formatDate(event.startDate)}</span>
+    )}
+  </div>
+  {event.location && (
+    <div class="text-sm mt-1 opacity-80">
+      <i class="fi fi-rr-marker mr-1"></i> {event.location}
+    </div>
+  )}
+</div>

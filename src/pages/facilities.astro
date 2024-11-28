@@ -1,0 +1,146 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+const animationClass = "opacity-0 translate-y-8";
+---
+
+<Layout title="Facilities - Data Center College of the Philippines">
+    <Block01Navigation client:only="react" />
+    <main class="flex-1 overflow-hidden">
+        <!-- Hero Section -->
+        <section class="w-full py-16 md:py-28 lg:py-36 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-blue-300 to-blue-300 animate-gradient"></div>
+            <div class="absolute inset-0 bg-[url('/noise.png')] opacity-20"></div>
+            <div class="container mx-auto px-4 md:px-6 relative">
+                <div class="flex flex-col items-center space-y-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white [text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)] animate-fade-in">
+                        Our Facilities
+                    </h1>
+                    <p class="max-w-[900px] text-white/90 text-lg md:text-xl/relaxed lg:text-2xl/relaxed animate-fade-in-delay">
+                        State-of-the-art learning spaces designed for your success
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Facilities Showcase -->
+        <section class="w-full py-16 md:py-24 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
+                    <!-- Computer Laboratories -->
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Computer+Lab')] bg-cover bg-center">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white">Computer Laboratories</h3>
+                            <p class="mt-2 text-white/90">Modern computer labs equipped with the latest hardware and software for hands-on learning experiences.</p>
+                        </div>
+                    </div>
+
+                    <!-- Library -->
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Library')] bg-cover bg-center">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white">Library</h3>
+                            <p class="mt-2 text-white/90">A comprehensive collection of academic resources, digital materials, and quiet study spaces.</p>
+                        </div>
+                    </div>
+
+                    <!-- Student Lounge -->
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Student+Lounge')] bg-cover bg-center">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white">Student Lounge</h3>
+                            <p class="mt-2 text-white/90">Comfortable spaces for relaxation, group study, and student collaboration.</p>
+                        </div>
+                    </div>
+
+                    <!-- Lecture Halls -->
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Lecture+Halls')] bg-cover bg-center">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white">Lecture Halls</h3>
+                            <p class="mt-2 text-white/90">Spacious, well-equipped classrooms with modern presentation technology.</p>
+                        </div>
+                    </div>
+
+                    <!-- Innovation Lab -->
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Innovation+Lab')] bg-cover bg-center">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white">Innovation Lab</h3>
+                            <p class="mt-2 text-white/90">A dedicated space for creative projects, prototyping, and technological innovation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Cafeteria -->
+                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
+                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Cafeteria')] bg-cover bg-center">
+                            <div class="absolute inset-0 bg-black/40"></div>
+                        </div>
+                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
+                            <h3 class="text-2xl font-bold text-white">Cafeteria</h3>
+                            <p class="mt-2 text-white/90">Modern dining facilities offering nutritious meals and a comfortable dining environment.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section class="w-full py-12 md:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+            <div class="container mx-auto px-4 md:px-6 text-center">
+                <h2 class="text-3xl font-bold tracking-tighter text-slate-800 mb-6">Visit Our Campus</h2>
+                <p class="text-lg text-slate-600 mb-8">Experience our facilities firsthand. Schedule a campus tour today!</p>
+                <a href="/contact" class="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700">
+                    Contact Us
+                </a>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+
+    .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    .animate-fade-in-delay {
+        animation: fadeIn 1s ease-out 0.5s forwards;
+        opacity: 0;
+    }
+
+    @keyframes fadeIn {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+</style>
