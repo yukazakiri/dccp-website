@@ -1,38 +1,112 @@
 ---
 import { Icon } from 'astro-icon/components'
 ---
-<header class="menu-header font-h sticky top-0 p-2 z-50 w-full  bg-slate-900 dark:bg-slate-900 dark:text-slate-50 backdrop-blur supports-[backdrop-filter]:bg-white/90">
+<header class="fixed top-0 left-0 right-0 font-h p-2 z-50 bg-white bg-opacity-75 backdrop-blur-sm">
     <div class="container mx-auto flex h-16 items-center px-4">
         <a href="/" class="flex items-center space-x-2 p-3">
-            <img src="/images/dccp-logo.webp" alt="DCCP Logo" class="h-14 w-auto" />
+            <img src="/images/dccp-logo.png" alt="DCCP Logo" class="h-14 w-auto" />
         </a>
        
-        <div class="flex items-center ml-auto">
-            <nav class="hidden md:flex items-center space-x-8">
-                <a href="#courses" class="text-sm font-medium transition-colors hover:text-blue-700 dark:hover:text-blue-400 flex flex-col text-center align-center mx-1">
-                    <i class="fi fi-rr-scroll-document-story text-2xl text-blue-900 dark:text-blue-300"></i>
-                    <span class="text-xs font-bolder  text-slate-800 dark:text-gray-200 hover:text-blue-900">Courses</span>
+        <div class="flex-1 flex justify-end">
+            <nav class="hidden md:flex items-center gap-8">
+                <!-- Academics Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center text-lg font-medium transition-colors hover:text-blue-700 gap-1">
+                        <span>Academics</span>
+                        <Icon name="heroicons:chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180" />
+                    </button>
+                    <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all">
+                        <a href="/programs" class="block px-4 py-2 hover:bg-blue-50">Programs</a>
+                        <a href="/faculty" class="block px-4 py-2 hover:bg-blue-50">Faculty</a>
+                        <a href="/calendar" class="block px-4 py-2 hover:bg-blue-50">Academic Calendar</a>
+                    </div>
+                </div>
+
+                <!-- Student Services Dropdown -->
+                <div class="relative group">
+                    <button class="flex items-center text-lg font-medium transition-colors hover:text-blue-700 gap-1">
+                        <span>Student Services</span>
+                        <Icon name="heroicons:chevron-down" class="h-4 w-4 transition-transform group-hover:rotate-180" />
+                    </button>
+                    <div class="absolute top-full left-0 mt-2 w-48 bg-white rounded-md shadow-lg py-2 invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-all">
+                        <a href="/enrollment" class="block px-4 py-2 hover:bg-blue-50">Enrollment</a>
+                        <a href="https://dccp-portal-v1-beta.vercel.app" class="block px-4 py-2 hover:bg-blue-50">Student Portal</a>
+                        <a href="/scholarships" class="block px-4 py-2 hover:bg-blue-50">Scholarships</a>
+                    </div>
+                </div>
+
+                <a href="/news" class="relative group">
+                    <span class="text-lg font-medium transition-colors hover:text-blue-700">News</span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="#about" class="text-sm font-medium transition-colors hover:text-blue-700 dark:hover:text-blue-400 flex flex-col text-center align-center mx-1">
-                    <i class="fi fi-rr-school text-2xl text-blue-900 dark:text-blue-300"></i>
-                    <span class="text-xs font-bolder  text-slate-800 dark:text-gray-200 hover:text-blue-900">About Us</span>
+
+                <a href="/about" class="relative group">
+                    <span class="text-lg font-medium transition-colors hover:text-blue-700">About</span>
+                    <span class="absolute -bottom-1 left-0 w-0 h-0.5 bg-blue-700 transition-all group-hover:w-full"></span>
                 </a>
-                <a href="https://dccp-portal-v1-beta.vercel.app" class="text-sm font-medium transition-colors hover:text-blue-700 dark:hover:text-blue-400 flex flex-col text-center align-center mx-1">
-                    <i class="fi fi-rr-student text-2xl text-blue-900 dark:text-blue-300"></i>
-                    <span class="text-xs font-bolder  text-slate-800 dark:text-gray-200 hover:text-blue-900">My Portal</span>
+
+                <a href="/contact" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                    Contact Us
                 </a>
             </nav>
             
-            <button aria-label="Toggle Theme" class="inline-flex items-center justify-center rounded-md text-sm font-medium border border-input bg-background hover:bg-accent h-10 w-10 md:hidden">
+            <!-- Mobile Menu Button -->
+            <button id="mobile-menu-button" class="inline-flex items-center justify-center rounded-md text-sm font-medium h-10 w-10 md:hidden">
                 <Icon name="heroicons:bars-3-solid" class="h-5 w-5" />
                 <span class="sr-only">Toggle menu</span>
             </button>
         </div>
     </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-white z-50 md:hidden hidden">
+        <div class="p-4">
+            <button id="close-mobile-menu" class="absolute top-4 right-4">
+                <Icon name="heroicons:x-mark" class="h-6 w-6" />
+                <span class="sr-only">Close menu</span>
+            </button>
+            
+            <div class="mt-16 space-y-4">
+                <div class="space-y-2">
+                    <div class="font-medium px-4">Academics</div>
+                    <a href="/programs" class="block px-4 py-2 hover:bg-gray-100">Programs</a>
+                    <a href="/faculty" class="block px-4 py-2 hover:bg-gray-100">Faculty</a>
+                    <a href="/calendar" class="block px-4 py-2 hover:bg-gray-100">Academic Calendar</a>
+                </div>
+                
+                <div class="space-y-2">
+                    <div class="font-medium px-4">Student Services</div>
+                    <a href="/enrollment" class="block px-4 py-2 hover:bg-gray-100">Enrollment</a>
+                    <a href="https://dccp-portal-v1-beta.vercel.app" class="block px-4 py-2 hover:bg-gray-100">Student Portal</a>
+                    <a href="/scholarships" class="block px-4 py-2 hover:bg-gray-100">Scholarships</a>
+                </div>
+                
+                <a href="/news" class="block px-4 py-2 hover:bg-gray-100">News</a>
+                <a href="/about" class="block px-4 py-2 hover:bg-gray-100">About</a>
+                <a href="/contact" class="block px-4 py-2 hover:bg-gray-100">Contact Us</a>
+            </div>
+        </div>
+    </div>
 </header>
+
+<script>
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const closeMenuButton = document.getElementById('close-mobile-menu');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    mobileMenuButton?.addEventListener('click', () => {
+        mobileMenu?.classList.remove('hidden');
+        document.body.style.overflow = 'hidden';
+    });
+
+    closeMenuButton?.addEventListener('click', () => {
+        mobileMenu?.classList.add('hidden');
+        document.body.style.overflow = '';
+    });
+</script>
 
 <style>
     .menu-header {
-        box-shadow: rgba(50, 50, 93, 0.25) 0px 6px 12px -2px, rgba(0, 0, 0, 0.3) 0px 3px 7px -3px;
+        box-shadow: rgba(0, 0, 0, 0.3) 0px 19px 38px, rgba(0, 0, 0, 0.22) 0px 15px 12px;
     }
 </style>

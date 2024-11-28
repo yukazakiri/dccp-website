@@ -1,4 +1,6 @@
 ---
+
+
 import Menu from "../components/Menu.astro";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
@@ -11,38 +13,31 @@ import ContactUs from "../components/contactUs.astro";
 import Location from "../components/location.astro";
 import ApplyNowCard from "../components/applyNowCard.astro";
 import ThemeToggle from "../components/ThemeToggle";
+
+import Block01Navigation from "../components/kokonutui/block-01-nav";
 ---
 
 <Layout title="Data Center College of the Philippines - Baguio City">
-	<Menu />
 	<main class="flex-1">
+		<Block01Navigation client:only="react" />
 		<HeroCard />
 		<AboutUs />
 		<Courses />
-		<Scholarships />
+		<!-- <Scholarships /> -->
+		<ContactUs />
 		<Location />
-		<ThemeToggle client:load />
+		<ApplyNowCard />
+		<Footer />
 		<InquireNow />
 	</main>
-
-	<Footer />
 </Layout>
 
 <style>
+
 	main {
 	}
 
-	.landing-page {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		background-image: url("/images/landing-page-background.webp");
-		background-size: cover;
-		background-repeat: no-repeat;
-		background-blend-mode: darken;
-		background-color: #070720;
-	}
+
 
 	h1 {
 		color: #1c1d22;

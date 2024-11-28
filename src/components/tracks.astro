@@ -1,0 +1,252 @@
+---
+---
+
+<section class="bg-white py-12 md:py-24 lg:py-32">
+    <div class="container mx-auto px-4 md:px-6">
+        <div class="grid md:grid-cols-2 gap-8">
+            <!-- Academic Tracks -->
+            <div>
+                <h2 class="text-3xl font-bold tracking-tighter text-center text-slate-800 mb-6">Academic Tracks</h2>
+                <div class="max-w-xl mx-auto">
+                    <!-- Tab Navigation -->
+                    <div class="flex justify-center border-b border-gray-200 mb-8">
+                        <button id="stemTab" 
+                                class="flex-1 text-center px-6 py-3 text-lg font-semibold border-b-2 border-blue-600 text-blue-600 tab-button active"
+                                data-tab="stem">
+                            STEM
+                        </button>
+                        <button id="abmTab" 
+                                class="flex-1 text-center px-6 py-3 text-lg font-semibold border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 tab-button"
+                                data-tab="abm">
+                            ABM
+                        </button>
+                        <button id="humssTab" 
+                                class="flex-1 text-center px-6 py-3 text-lg font-semibold border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 tab-button"
+                                data-tab="humss">
+                            HUMSS
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <!-- STEM Content -->
+                        <div id="stem" class="tab-pane active" data-tab-content="stem">
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Science, Technology, Engineering, and Mathematics</h3>
+                                <p class="text-slate-600 mb-6">Focus on advanced sciences and mathematics</p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-xl font-semibold mb-3 text-blue-800">Core Subjects</h4>
+                                        <ul class="list-none space-y-3">
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Science</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Technology</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Engineering</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Mathematics</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ABM Content -->
+                        <div id="abm" class="tab-pane hidden" data-tab-content="abm">
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Accountancy, Business, and Management</h3>
+                                <p class="text-slate-600 mb-6">Focus on business and financial management</p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-xl font-semibold mb-3 text-blue-800">Core Subjects</h4>
+                                        <ul class="list-none space-y-3">
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Accountancy</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Business</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Management</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- HUMSS Content -->
+                        <div id="humss" class="tab-pane hidden" data-tab-content="humss">
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Humanities and Social Sciences</h3>
+                                <p class="text-slate-600 mb-6">Focus on social sciences and liberal arts</p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-xl font-semibold mb-3 text-blue-800">Core Subjects</h4>
+                                        <ul class="list-none space-y-3">
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Humanities</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Social Sciences</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Technical-Vocational Tracks -->
+            <div>
+                <h2 class="text-3xl font-bold tracking-tighter text-center text-slate-800 mb-6">Technical-Vocational Tracks</h2>
+                <div class="max-w-xl mx-auto">
+                    <!-- Tab Navigation -->
+                    <div class="flex justify-center border-b border-gray-200 mb-8">
+                        <button id="homeEcTab" 
+                                class="flex-1 text-center px-6 py-3 text-lg font-semibold border-b-2 border-blue-600 text-blue-600 tab-button active"
+                                data-tab="homeEc">
+                            Home Economics
+                        </button>
+                        <button id="ictTab" 
+                                class="flex-1 text-center px-6 py-3 text-lg font-semibold border-b-2 border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300 tab-button"
+                                data-tab="ict">
+                            ICT
+                        </button>
+                    </div>
+
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+                        <!-- Home Economics Content -->
+                        <div id="homeEc" class="tab-pane active" data-tab-content="homeEc">
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Home Economics</h3>
+                                <p class="text-slate-600 mb-6">Focus on hospitality, tourism, and culinary arts</p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-xl font-semibold mb-3 text-blue-800">Specializations</h4>
+                                        <ul class="list-none space-y-3">
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Tourism Operations</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Food & Beverage Services</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ICT Content -->
+                        <div id="ict" class="tab-pane hidden" data-tab-content="ict">
+                            <div class="bg-white p-8 rounded-lg shadow-md">
+                                <h3 class="text-2xl font-bold mb-4">Information & Communications Technology</h3>
+                                <p class="text-slate-600 mb-6">Focus on computer technology and programming</p>
+                                <div class="space-y-6">
+                                    <div>
+                                        <h4 class="text-xl font-semibold mb-3 text-blue-800">Specializations</h4>
+                                        <ul class="list-none space-y-3">
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Computer Programming</span>
+                                            </li>
+                                            <li class="flex items-center">
+                                                <svg class="w-5 h-5 mr-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                                                </svg>
+                                                <span class="text-slate-600">Animation & Digital Arts</span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        // Function to initialize a tab group
+        function initializeTabGroup(container) {
+            const tabButtons = container.querySelectorAll('[data-tab]');
+            const tabPanes = container.querySelectorAll('[data-tab-content]');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const tabId = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and panes in this group
+                    tabButtons.forEach(btn => {
+                        btn.classList.remove('border-blue-600', 'text-blue-600');
+                        btn.classList.add('border-transparent', 'text-gray-500');
+                    });
+                    tabPanes.forEach(pane => pane.classList.add('hidden'));
+
+                    // Add active class to clicked button
+                    button.classList.remove('border-transparent', 'text-gray-500');
+                    button.classList.add('border-blue-600', 'text-blue-600');
+                    
+                    // Show the selected tab content
+                    const selectedPane = container.querySelector(`[data-tab-content="${tabId}"]`);
+                    if (selectedPane) {
+                        selectedPane.classList.remove('hidden');
+                    }
+                });
+            });
+        }
+
+        // Initialize each tab group separately
+        const academicTracks = document.querySelector('.grid > div:first-child');
+        const technicalTracks = document.querySelector('.grid > div:last-child');
+
+        if (academicTracks) initializeTabGroup(academicTracks);
+        if (technicalTracks) initializeTabGroup(technicalTracks);
+    });
+</script>

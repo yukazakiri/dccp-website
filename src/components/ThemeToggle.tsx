@@ -14,7 +14,6 @@ const ThemeToggle = () => {
 
   const toggleTheme = () => {
     setTheme((prevTheme) => (prevTheme === "light" ? "dark" : "light"));
-    window.localStorage.setItem('theme', theme === "light" ? "dark" : "light");
   };
 
   useEffect(() => {
@@ -25,24 +24,23 @@ const ThemeToggle = () => {
 
   if(theme === "light"){
     return (
-      <div
+      <button
         onClick={toggleTheme}
         className="toggle-theme fixed bottom-3 left-3 z-50"
       >
-      <i className="fi fi-rr-moon-stars text-xl font-500 text-blue-300"></i>
-      
-      </div>
+      <i className="fi fi-rr-moon text-3xl font-bold text-gray-700"></i>
+      </button>
     );
   }
 
   return (
-    <div
+    <button
       onClick={toggleTheme}
       className="toggle-theme fixed bottom-3 left-3 z-50"
     >
-    <i className="fi fi-rr-brightness text-xl font-bold text-orange-300"></i>
+    <i className="fi fi-rr-brightness text-3xl font-bold text-orange-500"></i>
      
-    </div>
+    </button>
   );
 };
 
