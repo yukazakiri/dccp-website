@@ -13,6 +13,14 @@ const MENU_ITEMS = {
             { label: "Admission Requirements", href: "/admission", icon: FileText },
         ],
     },
+    news: {
+        label: "News & Updates",
+        icon: Newspaper,
+        items: [
+            { label: "News & Announcements", href: "/news", icon: Newspaper },
+            { label: "Events", href: "/events", icon: Calendar },
+        ],
+    },
     studentServices: {
         label: "Student Services",
         icon: BookOpen,
@@ -51,10 +59,9 @@ const Block01Navigation = () => {
     }, [isMenuOpen]);
 
     return (
-        <nav className="fixed top-0 left-0 right-0 bg-white shadow-sm z-50">
+        <nav className="fixed top-0 left-0 right-0 bg-white/30 backdrop-blur-md z-50">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
-                    {/* Logo */}
                     <div className="flex-shrink-0">
                         <a href="/" className="flex items-center">
                             <img
@@ -65,8 +72,7 @@ const Block01Navigation = () => {
                         </a>
                     </div>
 
-                    {/* Desktop Menu */}
-                    <div className="hidden lg:flex lg:items-center lg:space-x-8">
+                    <div className="hidden lg:flex lg:items-center lg:space-x-4">
                         {Object.entries(MENU_ITEMS).map(([key, section]) => {
                             const Icon = section.icon;
                             return (
@@ -77,12 +83,12 @@ const Block01Navigation = () => {
                                     onMouseLeave={() => setActiveSection(null)}
                                 >
                                     <button 
-                                        className="inline-flex items-center px-4 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50 rounded-full transition-all duration-200 group-hover:text-blue-600"
+                                        className="inline-flex items-center px-3 py-2 text-sm font-medium text-gray-700 hover:text-blue-600 hover:bg-blue-50/50 rounded-full transition-all duration-200 group-hover:text-blue-600"
                                     >
-                                        <Icon className="w-4 h-4 mr-2" />
+                                        <Icon className="w-4 h-4 mr-1.5" />
                                         {section.label}
                                         <ChevronDown 
-                                            className={`ml-1 h-4 w-4 transition-transform duration-200 ${
+                                            className={`ml-0.5 h-4 w-4 transition-transform duration-200 ${
                                                 activeSection === key ? 'rotate-180' : ''
                                             }`}
                                         />
@@ -95,7 +101,7 @@ const Block01Navigation = () => {
                                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                                 exit={{ opacity: 0, y: 10, scale: 0.95 }}
                                                 transition={{ duration: 0.15 }}
-                                                className="absolute left-0 mt-2 w-64 bg-white rounded-2xl shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none overflow-hidden z-50"
+                                                className="absolute left-0 mt-2 w-64 bg-white/80 backdrop-blur-md rounded-2xl shadow-lg ring-1 ring-black/5 focus:outline-none overflow-hidden z-50"
                                                 style={{ 
                                                     transformOrigin: 'top',
                                                 }}
@@ -107,7 +113,7 @@ const Block01Navigation = () => {
                                                             <motion.a
                                                                 key={item.label}
                                                                 href={item.href}
-                                                                className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50 hover:text-blue-600 transition-all"
+                                                                className="flex items-center px-4 py-3 text-sm text-gray-700 hover:bg-blue-50/50 hover:text-blue-600 transition-all"
                                                                 whileHover={{ x: 6 }}
                                                                 transition={{ duration: 0.2 }}
                                                             >
@@ -123,43 +129,40 @@ const Block01Navigation = () => {
                                 </div>
                             );
                         })}
-                        
-                        {/* Quick Actions */}
-                        <div className="flex items-center space-x-4">
-                            <motion.a
-                                href="https://dccp-portal-v1-beta.vercel.app"
-                                className="inline-flex items-center px-4 py-2 text-sm font-medium text-blue-600 bg-blue-50 rounded-full hover:bg-blue-100 transition-all"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <LogIn className="w-4 h-4 mr-2" />
-                                Student Portal
-                            </motion.a>
-                            <motion.a
-                                href="/enrollment"
-                                className="inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-blue-600 rounded-full hover:bg-blue-700 transition-all"
-                                whileHover={{ scale: 1.05 }}
-                                whileTap={{ scale: 0.95 }}
-                            >
-                                <FileText className="w-4 h-4 mr-2" />
-                                Enroll Now
-                            </motion.a>
-                        </div>
                     </div>
 
-                    {/* Mobile Menu Button */}
+                    <div className="hidden lg:flex lg:items-center lg:space-x-3">
+                        <motion.a
+                            href="https://dccp-portal-v1-beta.vercel.app"
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50/50 rounded-full hover:bg-blue-100/50 transition-all"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <LogIn className="w-4 h-4 mr-1.5" />
+                            Student Portal
+                        </motion.a>
+                        <motion.a
+                            href="/enrollment"
+                            className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600/90 rounded-full hover:bg-blue-700/90 transition-all"
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                        >
+                            <FileText className="w-4 h-4 mr-1.5" />
+                            Enroll Now
+                        </motion.a>
+                    </div>
+
                     <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}
                         onClick={() => setIsMenuOpen(true)}
-                        className="lg:hidden p-2 rounded-full hover:bg-gray-100 transition-colors"
+                        className="lg:hidden p-2 rounded-full hover:bg-gray-100/50 transition-colors"
                     >
                         <Menu className="w-6 h-6" />
                     </motion.button>
                 </div>
             </div>
 
-            {/* Mobile Menu */}
             <AnimatePresence>
                 {isMenuOpen && (
                     <>
@@ -176,7 +179,7 @@ const Block01Navigation = () => {
                             animate={{ x: 0 }}
                             exit={{ x: "100%" }}
                             transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                            className="fixed right-0 top-0 h-screen w-full max-w-sm bg-white z-50 overflow-y-auto"
+                            className="fixed right-0 top-0 h-screen w-full max-w-sm bg-white/90 backdrop-blur-md z-50 overflow-y-auto"
                         >
                             <div className="sticky top-0 bg-white/95 backdrop-blur-sm border-b z-10">
                                 <div className="flex items-center justify-between p-4">
@@ -189,18 +192,17 @@ const Block01Navigation = () => {
                                         whileHover={{ scale: 1.1 }}
                                         whileTap={{ scale: 0.9 }}
                                         onClick={() => setIsMenuOpen(false)}
-                                        className="p-2 rounded-full hover:bg-gray-100 transition-colors"
+                                        className="p-2 rounded-full hover:bg-gray-100/50 transition-colors"
                                     >
                                         <X className="w-6 h-6" />
                                     </motion.button>
                                 </div>
                             </div>
 
-                            {/* Quick Actions */}
                             <div className="p-4 space-y-3">
                                 <motion.a
                                     href="https://dccp-portal-v1-beta.vercel.app"
-                                    className="flex items-center justify-center w-full p-3 text-blue-600 bg-blue-50 rounded-2xl font-medium hover:bg-blue-100 transition-all"
+                                    className="flex items-center justify-center w-full p-3 text-blue-600 bg-blue-50/50 rounded-2xl font-medium hover:bg-blue-100/50 transition-all"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
@@ -209,7 +211,7 @@ const Block01Navigation = () => {
                                 </motion.a>
                                 <motion.a
                                     href="/enrollment"
-                                    className="flex items-center justify-center w-full p-3 text-white bg-blue-600 rounded-2xl font-medium hover:bg-blue-700 transition-all"
+                                    className="flex items-center justify-center w-full p-3 text-white bg-blue-600/90 rounded-2xl font-medium hover:bg-blue-700/90 transition-all"
                                     whileHover={{ scale: 1.02 }}
                                     whileTap={{ scale: 0.98 }}
                                 >
@@ -218,7 +220,6 @@ const Block01Navigation = () => {
                                 </motion.a>
                             </div>
 
-                            {/* Menu Sections */}
                             <div className="px-4 py-2">
                                 {Object.entries(MENU_ITEMS).map(([key, section], index) => {
                                     const Icon = section.icon;
@@ -249,7 +250,7 @@ const Block01Navigation = () => {
                                                             <motion.a
                                                                 href={item.href}
                                                                 onClick={() => setIsMenuOpen(false)}
-                                                                className="flex items-center px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all"
+                                                                className="flex items-center px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100/50 transition-all"
                                                                 whileHover={{ x: 6 }}
                                                             >
                                                                 <ItemIcon className="w-4 h-4 mr-3 text-gray-500" />
@@ -264,12 +265,11 @@ const Block01Navigation = () => {
                                 })}
                             </div>
 
-                            {/* News & Announcements */}
                             <div className="px-4 py-2 mt-4">
                                 <motion.a
                                     href="/news"
                                     onClick={() => setIsMenuOpen(false)}
-                                    className="flex items-center px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100 transition-all"
+                                    className="flex items-center px-3 py-3 text-gray-700 rounded-xl hover:bg-gray-100/50 transition-all"
                                     whileHover={{ x: 6 }}
                                 >
                                     <Newspaper className="w-4 h-4 mr-3 text-gray-500" />
