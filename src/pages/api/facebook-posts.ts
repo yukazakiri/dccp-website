@@ -19,12 +19,12 @@ interface FacebookPost {
   };
 }
 
-export const prerender = false;  // Important: This ensures the API runs at request time
+export const prerender = true;  // Important: This ensures the API runs at request time
 
 export const GET: APIRoute = async ({ request }) => {
   try {
     const pageId = '107112007853485';
-    const accessToken = 'EAARdS5kPdZBIBO7JUKNb6JYEzkquKEjZCn92fWZCUV5NyCdGiZB4vditNKOf8WK3GSZAL2l6Xmm9NoOZBRheq0F7WAcQvJQiVmx2hx07jrA54A5ZCK0LicgkZAmZCaK7GAcOxN3BrZAhYmRDdfcxB9KSchIMLyYguUPblCyZCxqQIfFRhR1qicKEsbOjJUto6v4YdTUQMDIfNFOF1FdKB6bqiflcL1HbnSMp2ZCkraCZBuGLs';
+    const accessToken = 'EAARdS5kPdZBIBO2iqZBb8aNQc6UeZBk4ViLMZByUFzEzZCkmRgpWcOnZABN4SsSC7hmjl6gwd8jmMK6hyTZBlE8ZBafk5eYoiB6YNOFwHUVDJ8ZB7ZADJnuyctE0TuPjPTtmbUOUd8FOpsFfdo3y5BKao1ZBrTu7hJoa7PYAhHPY0YejytBneMBA5ZCzB2PuX1JUIJ6Atc8pQLF7bZAAtg5G6Ig7ZBVzllwfLhYiSgyWMVxtsZD';
 
     const params = new URLSearchParams({
       fields: 'message,created_time,permalink_url,full_picture,attachments{media,type,url}',
