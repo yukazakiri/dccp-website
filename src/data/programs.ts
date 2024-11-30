@@ -1,7 +1,9 @@
+import type { LucideIcon } from 'lucide-react';
+
 interface Program {
   title: string;
   description: string;
-  icon: string;
+  icon: keyof typeof import('lucide-react');
   features: string[];
   color: {
     from: string;
@@ -13,7 +15,7 @@ interface Program {
 
 interface ProgramCategory {
   title: string;
-  icon: string;
+  icon: keyof typeof import('lucide-react');
   programs: Program[];
 }
 

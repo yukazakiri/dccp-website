@@ -1,5 +1,6 @@
 ---
 import * as Icons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import ProgramCard from './ProgramCard.astro';
 import { programsData } from '../data/programs';
 ---
@@ -20,7 +21,7 @@ import { programsData } from '../data/programs';
         <!-- Program Categories -->
         <div class="grid gap-16">
             {programsData.map((category) => {
-                const CategoryIcon = Icons[category.icon];
+                const CategoryIcon = Icons[category.icon] as LucideIcon;
                 return (
                     <section class="relative">
                         <div class="flex items-center gap-4 mb-8">

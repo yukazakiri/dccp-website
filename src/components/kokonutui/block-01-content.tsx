@@ -57,14 +57,14 @@ export default function Block01Content() {
                     href="/me"
                     className="h-12 px-6 gap-2 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 flex items-center rounded-lg"
                 >
-                    Start Building Free
+                    Get Started
                     <ArrowRight className="h-4 w-4" />
                 </a>
                 <a
                     href="/me"
-                    className="h-12 px-6 border-zinc-200 dark:border-zinc-800 flex items-center gap-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg"
+                    className="h-12 px-6 border border-zinc-200 dark:border-zinc-800 flex items-center gap-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg"
                 >
-                    Book a Demo
+                    Learn More
                 </a>
             </div>
 
