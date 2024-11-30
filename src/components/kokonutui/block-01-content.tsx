@@ -1,6 +1,5 @@
 import { ArrowRight } from "lucide-react";
 import { Star } from "lucide-react";
-import Link from "next/link";
 
 function HeroBadge() {
     return (
@@ -54,19 +53,19 @@ export default function Block01Content() {
             </p>
 
             <div className="mt-8 sm:mt-10 w-full flex flex-col sm:flex-row items-center justify-center gap-4">
-                <Link
+                <a
                     href="/me"
                     className="h-12 px-6 gap-2 bg-zinc-900 dark:bg-white text-white dark:text-black hover:bg-zinc-800 dark:hover:bg-zinc-200 flex items-center rounded-lg"
                 >
                     Start Building Free
                     <ArrowRight className="h-4 w-4" />
-                </Link>
-                <Link
+                </a>
+                <a
                     href="/me"
                     className="h-12 px-6 border-zinc-200 dark:border-zinc-800 flex items-center gap-2 bg-white dark:bg-zinc-900 text-zinc-900 dark:text-white hover:bg-zinc-100 dark:hover:bg-zinc-800 rounded-lg"
                 >
                     Book a Demo
-                </Link>
+                </a>
             </div>
 
             <div className="mt-12 sm:mt-16 flex flex-col items-center gap-6">
