@@ -3,32 +3,41 @@ import Layout from "../layouts/Layout.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
 import Block01Navigation from "../components/kokonutui/block-01-nav";
+import { facebookPosts } from '../data/facebook-posts';
 
-// Fetch Facebook posts
-let facebookPosts = [];
-try {
-  const response = await fetch('http://localhost:4321/api/facebook-posts');
-  const data = await response.json();
-  facebookPosts = data.posts || [];
-} catch (error) {
-  console.error('Error fetching Facebook posts:', error);
+interface NewsItem {
+  id: string;
+  title: string;
+  date: string;
+  content: string;
+  link: string;
+  type: 'facebook' | 'announcement';
+  image: string;
+  excerpt: string;
+  featured: boolean;
+  category: string;
+  fbLink: string;
+  markdown: string;
 }
 
-// Convert Facebook posts to news items format
-const fbNewsItems = facebookPosts.map((post, index) => ({
+// Convert Facebook posts to news items
+const fbNewsItems: NewsItem[] = facebookPosts.map((post: any, index: number) => ({
   id: `fb-${index}`,
-  title: post.content?.split('\n')[0] || 'Facebook Update',
-  category: 'Social Media Update',
-  date: post.date,
-  image: post.imageUrl || "https://placehold.co/600x400/2563eb/FFFFFF/png?text=DCCP+Update",
-  excerpt: post.content || '',
+  title: post.message?.split('\n')[0] || 'Facebook Update',
+  date: new Date(post.created_time).toLocaleDateString(),
+  content: post.message || '',
+  link: post.permalink_url,
+  type: 'facebook',
+  image: post.full_picture || "https://placehold.co/600x400/2563eb/FFFFFF/png?text=DCCP+Update",
+  excerpt: post.message || '',
   featured: index < 2,
-  fbLink: post.permalink,
-  markdown: post.markdown
+  category: 'Social Media Update',
+  fbLink: post.permalink_url,
+  markdown: post.message || ''
 }));
 
-// Combine with existing news items if needed
-const newsItems = [...fbNewsItems];
+// Combine all news items
+const allNewsItems = [...fbNewsItems];
 
 ---
 
@@ -56,7 +65,7 @@ const newsItems = [...fbNewsItems];
             <div class="container mx-auto px-4 md:px-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-8">Featured News</h2>
                 <div class="grid gap-8 md:grid-cols-2">
-                    {newsItems.filter(item => item.featured).map(item => (
+                    {allNewsItems.filter(item => item.featured).map(item => (
                         <div class="group relative overflow-hidden rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 bg-white">
                             <div class="aspect-video w-full overflow-hidden">
                                 <img 
@@ -94,7 +103,7 @@ const newsItems = [...fbNewsItems];
             <div class="container mx-auto px-4 md:px-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-8">Recent News</h2>
                 <div class="grid gap-8 md:grid-cols-3">
-                    {newsItems.filter(item => !item.featured).map(item => (
+                    {allNewsItems.filter(item => !item.featured).map(item => (
                         <div class="group bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
                             <div class="aspect-video w-full overflow-hidden rounded-t-lg">
                                 <img 
@@ -175,12 +184,20 @@ const newsItems = [...fbNewsItems];
 </style>
 
 <script>
-    // Add smooth scrolling behavior
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            e.preventDefault();
-            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                behavior: 'smooth'
+    document.addEventListener('DOMContentLoaded', () => {
+        const navLinks = document.querySelectorAll('a[href^="#"]');
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e: Event) => {
+                e.preventDefault();
+                const target = e.currentTarget as HTMLAnchorElement;
+                const targetId = target.getAttribute('href');
+                if (targetId) {
+                    const targetElement = document.querySelector(targetId);
+                    targetElement?.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
             });
         });
     });

@@ -141,70 +141,59 @@ const viewOptions = [
 </Layout>
 
 <script>
-  let currentCategory = 'all';
-  let currentView = 'calendar';
+  document.addEventListener('DOMContentLoaded', () => {
+    const calendarView = document.getElementById('calendarView') as HTMLElement;
+    const listView = document.getElementById('listView') as HTMLElement;
+    const calendarComponent = document.querySelector('full-calendar') as HTMLElement;
+    const events = document.querySelectorAll('.calendar-event') as NodeListOf<HTMLElement>;
+    let currentView = 'calendar';
+    let currentCategory = 'all';
 
-  function initializeFilters() {
-    const filterButtons = document.querySelectorAll('#filterButtons button');
-    const events = document.querySelectorAll('.calendar-event');
-    const viewButtons = document.querySelectorAll('#viewToggle button');
-    const calendarView = document.getElementById('calendarView');
-    const listView = document.getElementById('listView');
-
-    // View toggle functionality
-    viewButtons.forEach(button => {
+    // View switching
+    document.querySelectorAll('[data-view]').forEach(button => {
       button.addEventListener('click', () => {
         const view = button.getAttribute('data-view');
-        if (view === currentView) return;
+        if (!view) return;
 
-        // Update buttons
-        viewButtons.forEach(btn => btn.setAttribute('data-active', 'false'));
-        button.setAttribute('data-active', 'true');
-
-        // Toggle views
         if (view === 'calendar') {
-          calendarView.classList.remove('hidden');
-          listView.classList.add('hidden');
+          if (calendarView) calendarView.classList.remove('hidden');
+          if (listView) listView.classList.add('hidden');
         } else {
-          calendarView.classList.add('hidden');
-          listView.classList.remove('hidden');
+          if (calendarView) calendarView.classList.add('hidden');
+          if (listView) listView.classList.remove('hidden');
         }
-
         currentView = view;
       });
     });
 
-    // Category filter functionality
-    filterButtons.forEach(button => {
+    // Category filtering
+    document.querySelectorAll('[data-category]').forEach(button => {
       button.addEventListener('click', () => {
         const category = button.getAttribute('data-category');
-        if (category === currentCategory) return;
-        
-        // Update active state
-        filterButtons.forEach(btn => btn.setAttribute('data-active', 'false'));
-        button.setAttribute('data-active', 'true');
+        if (!category) return;
 
-        // Update calendar component's selected category
-        const calendarComponent = document.querySelector('full-calendar');
+        // Update active state
+        document.querySelectorAll('[data-category]').forEach(btn => {
+          btn.classList.remove('active');
+        });
+        button.classList.add('active');
+
         if (calendarComponent) {
           calendarComponent.setAttribute('selected-category', category);
         }
 
-        // Filter list view events
+        // Filter events
         events.forEach(event => {
+          const eventCategory = event.getAttribute('data-category');
           if (category === 'all') {
-            event.style.display = '';
+            event.style.cssText = 'display: block';
           } else {
-            const eventCategory = event.getAttribute('data-category');
-            event.style.display = eventCategory === category ? '' : 'none';
+            event.style.cssText = eventCategory === category ? 'display: block' : 'display: none';
           }
         });
 
         currentCategory = category;
       });
     });
-  }
-
-  // Initialize after DOM is loaded
-  document.addEventListener('DOMContentLoaded', initializeFilters);
+  });
 </script>

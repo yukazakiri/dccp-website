@@ -1,5 +1,6 @@
 ---
 import * as Icons from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 
 interface Props {
   title: string;
@@ -15,7 +16,7 @@ interface Props {
 }
 
 const { title, description, icon, features, color } = Astro.props;
-const Icon = Icons[icon];
+const Icon = Icons[icon] as LucideIcon;
 ---
 
 <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
