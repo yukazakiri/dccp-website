@@ -27,7 +27,6 @@ const MENU_ITEMS = {
             { label: "Student Portal", href: "https://dccp-portal-v1-beta.vercel.app", icon: LogIn },
             { label: "Online Enrollment", href: "/enrollment", icon: FileText },
             { label: "Scholarships", href: "/scholarships", icon: GraduationCap },
-            { label: "Library", href: "/library", icon: Library },
         ],
     },
     about: {
