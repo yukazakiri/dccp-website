@@ -36,7 +36,7 @@ const MENU_ITEMS = {
         items: [
             { label: "About DCCP", href: "/about", icon: School },
             { label: "Our History", href: "/history", icon: BookOpen },
-            { label: "Facilities", href: "/facilities", icon: Building2 },
+            { label: "Policy Guidelines", href: "/student-policy-guidelines", icon: Building2 },
             { label: "Contact Us", href: "/contact", icon: Phone },
         ],
     },

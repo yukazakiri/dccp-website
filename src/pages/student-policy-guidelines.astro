@@ -1,0 +1,264 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+
+const attendancePolicies = [
+    {
+        title: "General Attendance Rules",
+        items: [
+            "Prompt and regular attendance in all classes is required of all students from the first meeting of every course",
+            "A student is considered absent from class if he is not present within the first quarter of the scheduled class time.",
+            "A student is considered ABSENT if he/she arrives:",
+            "    • after the first 15 minutes for a 1-hour class",
+            "    • after the first 25 minutes for a 1-hour class",
+            "    • after the first 30 minutes for a 2-hour class",
+            "A student who is absent for 20% or more of the total hours required for the whole course will be automatically dropped from the class.",
+            "54 HOURS (20%) = 11 OR MORE DAYS"
+        ]
+    },
+    {
+        title: "Medical Absences",
+        items: [
+            "In case a student is absent due to sickness, he should submit a medical certificate duly signed by a Doctor. This certificate will be presented to the Guidance Counselor and to the Instructors concerned. Mark to be given is \"EXCUSED\".",
+            "A student is held responsible for all assignments and for the entire content of the course missed, regardless of the reason for his absence."
+        ]
+    },
+    {
+        title: "Attendance Monitoring",
+        items: [
+            "Students are not allowed to sit-in a class unless they are enrolled.",
+            "The faculty shall report to the Guidance Counselor any student who incurs THREE CONSECUTIVE ABSENCES or FIVE ACCUMULATED ABSENCES in any class by dropping the class card of the student. The said student shall not be re-admitted in class without an ADMISSION SLIP duly signed by the Guidance Counselor.",
+            "Any student who persists in absenting himself after having been re-admitted in class shall be reported again to the Guidance Counselor for counseling."
+        ]
+    }
+];
+
+const uniformPolicies = [
+    {
+        title: "General Guidelines",
+        items: [
+            "Wearing of school uniforms will be Monday-Wednesday",
+            "Free days will be on Tuesdays and Thursdays",
+            "Students who have NSTP/ROTC and P.E. have to wear their uniforms during their respective classes",
+            "Students are required to come to school in decent attire",
+            "For the male, they must have to wear pants and T-shirt with collar",
+            "Students are not allowed to wear the following during Mondays to Saturdays: walking shorts, sandos, slippers, nose/earrings, male earring, women sandals and wearing of caps inside the classroom"
+        ]
+    },
+    {
+        title: "I.D. Requirements",
+        items: [
+            "Every student shall wear the official identification card (I.D.) at all times inside the school premises. The purpose of I.D is for admittance to the school premises, securing letters and for general identification purposes.",
+            "In case of loss of I.D.:",
+            "    1. Secure an affidavit of loss of I.D",
+            "    2. Present the following to the STUDENT AFFAIRS OFFICE",
+            "        a. Affidavit of loss",
+            "        b. One copy of 1 x 1 I.D. picture"
+        ]
+    },
+    {
+        title: "Male Student Guidelines",
+        items: [
+            "Male students must have clean and decent haircut whether or not enrolled in the NSTP/ROTC."
+        ]
+    }
+];
+
+const offensesAndSanctions = {
+    majorOffenses: [
+        "1. Vandalism or destruction of school property, or the personal property of any member of the faculty, administrative, non-teaching staff, or visitors while on campus.",
+        "2. Carrying of firearm, knife in any size and shape or any other deadly weapon in the school premises.",
+        "3. Creation and participation in any activities within the school premises, which cause disorder and other serious disturbances.",
+        "4. Physical attack and/or inflicting physical injuries to students, personnel or visitors within the school premises.",
+        "5. Unauthorized or illegal possession or use of prohibited drugs such as LSD, marijuana, heroin, \"rugby\", or opiates and hallucinogenic drugs or substances in any form within the college premises, or the possession of any regulated drug without the proper prescription.",
+        "6. Brawls on campus or at school functions off campus",
+        "7. Unauthorized possession and/or drinking alcoholic beverages within the College buildings and the immediate premises, or entering or being in the College premises in a state of intoxication.",
+        "8. Threatening or any act amounting to a crime or wrong",
+        "9. Habitual disregard or willful violation of established policies and regulations.",
+        "10. Stealing or an attempt thereof.",
+        "11. Forging or tampering academic or official records or documents.",
+        "12. Gambling especially within the school premises",
+        "13. Hazing and initiation activities, which clearly inflict bodily and/or psychological harm or demean the dignity of individual.",
+        "14. Acts of lewdness, commission of any act of immorality or the display or distribution of pornographic materials within the campus.",
+        "15. Cheating during examinations including:",
+        "    a. Unauthorized possession of notes or any material relative to the examination",
+        "    b. Copying from or allowing another to copy from one's examination paper",
+        "    c. Deliberately looking at a seatmate's examination papers",
+        "    d. Talking with another student without permission during examination",
+        "    e. Passing as one's own work any assigned report, term paper, case analysis, reaction paper and the like, copied from another student"
+    ],
+    minorOffenses: [
+        "1. Entering the campus without an ID card or using someone else's ID card",
+        "2. Littering",
+        "3. Smoking inside the school premises",
+        "4. Wearing inappropriate campus attire",
+        "5. Disturbing classes by shouting, whistling, unrestrained laughter and other similar disturbances",
+        "6. Entering a class or breaking into a school function without permission from those concerned",
+        "7. Other offenses, which disturb the peace and order of the school unless properly classified",
+        "16. Commission of three minor offenses.",
+        "17. Such other acts as may hereinafter be determined by the Board to be detrimental to the school.",
+        "18. Disrespectful to the instructor or other authorities by means of shouting or quarrelling."
+    ],
+    sanctions: {
+        major: [
+            "1. Probationary suspension with janitorial services (minimum of 3 days and a maximum of 1 month)",
+            "2. Dismissal",
+            "3. Expulsion",
+            "Note: If a student has incurred one major offense, he is subjected to probation, which means his academic attendance, and performance is under observation. Failure to improve or change means dismissal from the school."
+        ],
+        minor: [
+            "1. Warning and reprimand by the Head for Student Affairs",
+            "2. Counseling by the Guidance Center",
+            "3. Consultation with parents, guardians or any person responsible for the conduct of the student in case of a second offense",
+            "4. In case of minor personal offense, written apology to the person concerned is needed",
+            "5. Written incident report of the offense committed is submitted to the guidance office"
+        ]
+    },
+    disciplinaryBoard: [
+        "The Board will decide the appropriate sanction of misconduct depending on the degree of damage done",
+        "If a student violated the rules and regulations of the school, particularly the major offenses, the Guidance Director would refer the case to the Head for Student Affairs to be deliberated by the disciplinary board",
+        "Disciplinary Board members:",
+        "    • The Head for Student Affairs",
+        "    • Faculty Representative",
+        "    • Guidance Counselor (moderator)",
+        "    • CBS Officer"
+    ]
+};
+---
+
+<Layout title="Student Policy Guidelines | DCCP">
+    <Block01Navigation client:load />
+    
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-r from-blue-800 to-blue-600 py-24">
+        <div class="absolute inset-0 bg-blue-900/20"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    Student Policy Guidelines
+                </h1>
+                <p class="mt-6 text-xl text-blue-100 max-w-3xl mx-auto">
+                    Your comprehensive guide to DCCP's academic policies, regulations, and standards
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <main class="bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <!-- Content Sections -->
+            <div class="space-y-16">
+                <!-- Attendance Section -->
+                <section id="attendance" class="scroll-mt-32">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-600 to-blue-500 px-6 py-4">
+                            <h2 class="text-2xl font-semibold text-white">Attendance Policies</h2>
+                        </div>
+                        <div class="p-6 space-y-8">
+                            {attendancePolicies.map((policy) => (
+                                <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-4">{policy.title}</h3>
+                                    <ul class="space-y-4">
+                                        {policy.items.map((item) => (
+                                            <li class="text-gray-700 leading-relaxed">{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Uniform Section -->
+                <section id="uniform" class="scroll-mt-32">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-green-600 to-green-500 px-6 py-4">
+                            <h2 class="text-2xl font-semibold text-white">Uniform Guidelines</h2>
+                        </div>
+                        <div class="p-6 space-y-8">
+                            {uniformPolicies.map((policy) => (
+                                <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                    <h3 class="text-xl font-semibold text-gray-900 mb-4">{policy.title}</h3>
+                                    <ul class="space-y-4">
+                                        {policy.items.map((item) => (
+                                            <li class="text-gray-700 leading-relaxed">{item}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Offenses Section -->
+                <section id="offenses" class="scroll-mt-32">
+                    <div class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-red-600 to-red-500 px-6 py-4">
+                            <h2 class="text-2xl font-semibold text-white">Offenses and Sanctions</h2>
+                        </div>
+                        <div class="space-y-6 p-6">
+                            <!-- Major Offenses -->
+                            <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                <h3 class="text-xl font-semibold text-red-700 mb-4">Major Offenses</h3>
+                                <ul class="space-y-4">
+                                    {offensesAndSanctions.majorOffenses.map((offense) => (
+                                        <li class="text-gray-700 leading-relaxed">{offense}</li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <!-- Minor Offenses -->
+                            <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                <h3 class="text-xl font-semibold text-orange-700 mb-4">Minor Offenses</h3>
+                                <ul class="space-y-4">
+                                    {offensesAndSanctions.minorOffenses.map((offense) => (
+                                        <li class="text-gray-700 leading-relaxed">{offense}</li>
+                                    ))}
+                                </ul>
+                            </div>
+
+                            <!-- Sanctions -->
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <!-- Major Offense Sanctions -->
+                                <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                    <h3 class="text-xl font-semibold text-purple-700 mb-4">Major Offense Sanctions</h3>
+                                    <ul class="space-y-4">
+                                        {offensesAndSanctions.sanctions.major.map((sanction) => (
+                                            <li class="text-gray-700 leading-relaxed">{sanction}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+
+                                <!-- Minor Offense Sanctions -->
+                                <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                    <h3 class="text-xl font-semibold text-purple-700 mb-4">Minor Offense Sanctions</h3>
+                                    <ul class="space-y-4">
+                                        {offensesAndSanctions.sanctions.minor.map((sanction) => (
+                                            <li class="text-gray-700 leading-relaxed">{sanction}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            </div>
+
+                            <!-- Disciplinary Board -->
+                            <div class="bg-gray-50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                <h3 class="text-xl font-semibold text-purple-700 mb-4">Disciplinary Board</h3>
+                                <ul class="space-y-4">
+                                    {offensesAndSanctions.disciplinaryBoard.map((item) => (
+                                        <li class="text-gray-700 leading-relaxed">{item}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
