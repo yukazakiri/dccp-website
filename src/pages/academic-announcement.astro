@@ -1,0 +1,324 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+import { facebookPosts } from '../data/facebook-posts';
+
+interface AnnouncementItem {
+  id: string;
+  title: string;
+  date: string;
+  content: string;
+  link: string;
+  type: 'facebook' | 'announcement';
+  image: string;
+  excerpt: string;
+  featured: boolean;
+  category: string;
+  fbLink: string;
+  markdown: string;
+  office?: 'academic' | 'guidance' | 'student-affairs';
+}
+
+// Convert Facebook posts to announcement items (filtering for academic-related posts)
+const fbAnnouncementItems: AnnouncementItem[] = facebookPosts
+  .filter((post: any) => {
+    if (!post.message) return false;
+    const message = post.message.toLowerCase();
+    const keywords = ['academic', 'class', 'exam', 'schedule', 'enrollment', 'semester'];
+    return keywords.some(keyword => message.includes(keyword));
+  })
+  .map((post: any): AnnouncementItem => ({
+    id: post.id,
+    title: post.message?.split('\n')[0] || 'Academic Announcement',
+    date: post.created_time,
+    content: post.message || '',
+    link: post.permalink_url || '',
+    type: 'facebook',
+    image: post.full_picture || '/images/default-announcement.jpg',
+    excerpt: post.message?.substring(0, 150) + '...' || '',
+    featured: false,
+    category: 'Academic',
+    fbLink: post.permalink_url || '',
+    markdown: post.message || ''
+  }))
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()); 
+
+// Get the 3 most recent announcements and mark them as featured
+const featuredAnnouncements = fbAnnouncementItems.slice(0, 3).map(item => ({
+  ...item,
+  featured: true
+}));
+
+// Rest of the announcements (not featured)
+const regularAnnouncements = fbAnnouncementItems.slice(3).map(item => ({
+  ...item,
+  featured: false
+}));
+
+// Sample announcements for other offices (replace with actual data later)
+const guidanceOfficeAnnouncements: AnnouncementItem[] = [];
+const studentAffairsAnnouncements: AnnouncementItem[] = [];
+
+// Combine all announcement items
+const allAnnouncementItems = [...featuredAnnouncements, ...regularAnnouncements, ...guidanceOfficeAnnouncements, ...studentAffairsAnnouncements];
+
+// Empty state component
+const EmptyState = ({ title }: { title: string }) => `
+  <div class="flex flex-col items-center justify-center p-8 text-center bg-gray-50 rounded-lg border-2 border-dashed border-gray-200">
+    <div class="w-16 h-16 mb-4 text-gray-400">
+      <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+      </svg>
+    </div>
+    <h3 class="text-lg font-medium text-gray-900 mb-1">No Announcements Yet</h3>
+    <p class="text-sm text-gray-500">There are currently no announcements from the ${title}.</p>
+  </div>
+`;
+
+---
+
+<Layout title="Academic Announcements - Data Center College of the Philippines">
+    <Block01Navigation client:only="react" />
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="w-full py-20 md:py-28 lg:py-32 relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-900">
+            <div class="absolute inset-0 bg-[url('/noise.png')] opacity-30 mix-blend-soft-light"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent"></div>
+            <div class="container mx-auto px-4 md:px-6 relative">
+                <div class="flex flex-col items-center space-y-6 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white drop-shadow-lg max-w-4xl">
+                        Academic Announcements
+                    </h1>
+                    <p class="max-w-[700px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed font-medium">
+                        Stay updated with the latest academic announcements, schedules, and important updates from DCCP
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Announcements Section -->
+        <section class="w-full py-16 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Featured Announcements</h2>
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {featuredAnnouncements.map(item => (
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                            <div class="aspect-[4/3] w-full bg-blue-600">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    class="w-full h-full object-cover"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-3 mb-3">
+                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                        {item.category}
+                                    </span>
+                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-900 mb-2 line-clamp-2 hover:text-blue-600 transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p class="text-gray-600 mb-4 line-clamp-2">{item.excerpt}</p>
+                                <a href={item.fbLink} class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Announcements -->
+        <section class="w-full py-12 bg-gray-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Academic Announcements</h2>
+                <div class="grid gap-6">
+                    {regularAnnouncements.length > 0 ? (
+                        regularAnnouncements.map(item => (
+                            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="w-full md:w-1/3 bg-blue-600">
+                                        <img 
+                                            src={item.image} 
+                                            alt={item.title}
+                                            class="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div class="flex-1 p-6">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                                {item.category}
+                                            </span>
+                                            <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                        </div>
+                                        <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+                                            {item.title}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4 line-clamp-2">{item.excerpt}</p>
+                                        <a href={item.fbLink} class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center">
+                                            Read more
+                                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md p-8">
+                            <div class="flex flex-col items-center justify-center text-center">
+                                <div class="w-16 h-16 mb-4 text-blue-600">
+                                    <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">No Academic Announcements</h3>
+                                <p class="text-gray-500 max-w-md">Stay tuned! Academic announcements will be posted here as they become available.</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </section>
+
+        <!-- Guidance Office Announcements -->
+        <section class="w-full py-12 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Guidance Office Announcements</h2>
+                <div class="grid gap-6">
+                    {guidanceOfficeAnnouncements.length > 0 ? (
+                        guidanceOfficeAnnouncements.map(item => (
+                            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="w-full md:w-1/3 bg-blue-600">
+                                        <img 
+                                            src={item.image} 
+                                            alt={item.title}
+                                            class="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div class="flex-1 p-6">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                                {item.category}
+                                            </span>
+                                            <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                        </div>
+                                        <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+                                            {item.title}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4 line-clamp-2">{item.excerpt}</p>
+                                        <a href={item.fbLink} class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center">
+                                            Read more
+                                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md p-8">
+                            <div class="flex flex-col items-center justify-center text-center">
+                                <div class="w-16 h-16 mb-4 text-blue-600">
+                                    <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">No Guidance Announcements</h3>
+                                <p class="text-gray-500 max-w-md">Check back later for updates and announcements from the Guidance Office.</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Affairs Office Announcements -->
+        <section class="w-full py-12 bg-gray-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-3xl font-bold text-gray-900 mb-8">Student Affairs Office Announcements</h2>
+                <div class="grid gap-6">
+                    {studentAffairsAnnouncements.length > 0 ? (
+                        studentAffairsAnnouncements.map(item => (
+                            <div class="bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300">
+                                <div class="flex flex-col md:flex-row">
+                                    <div class="w-full md:w-1/3 bg-blue-600">
+                                        <img 
+                                            src={item.image} 
+                                            alt={item.title}
+                                            class="w-full h-full object-cover"
+                                        />
+                                    </div>
+                                    <div class="flex-1 p-6">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                                {item.category}
+                                            </span>
+                                            <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                        </div>
+                                        <h3 class="text-xl font-bold text-gray-900 mb-2 hover:text-blue-600 transition-colors">
+                                            {item.title}
+                                        </h3>
+                                        <p class="text-gray-600 mb-4 line-clamp-2">{item.excerpt}</p>
+                                        <a href={item.fbLink} class="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center">
+                                            Read more
+                                            <svg class="w-4 h-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        ))
+                    ) : (
+                        <div class="bg-white rounded-lg overflow-hidden shadow-md p-8">
+                            <div class="flex flex-col items-center justify-center text-center">
+                                <div class="w-16 h-16 mb-4 text-blue-600">
+                                    <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                                    </svg>
+                                </div>
+                                <h3 class="text-xl font-semibold text-gray-900 mb-2">No Student Affairs Announcements</h3>
+                                <p class="text-gray-500 max-w-md">Visit again soon for updates and announcements from the Student Affairs Office.</p>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </section>
+    </main>
+</Layout>
+
+<style>
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+
+    /* Add smooth scrolling */
+    html {
+        scroll-behavior: smooth;
+    }
+
+    /* Enhance image transitions */
+    img {
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
+    }
+</style>
