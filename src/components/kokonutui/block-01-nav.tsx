@@ -8,6 +8,7 @@ const MENU_ITEMS = {
         icon: GraduationCap,
         items: [
             { label: "Programs Offered", href: "/programs", icon: School },
+            { label: "Faculty", href: "/faculty", icon: Users },
             { label: "Academic Calendar", href: "/calendar", icon: Calendar },
             { label: "Admission Requirements", href: "/admission", icon: FileText },
         ],
@@ -17,7 +18,7 @@ const MENU_ITEMS = {
         icon: Newspaper,
         items: [
             { label: "News & Announcements", href: "/news", icon: Newspaper },
-            { label: "Academic Announcements", href: "/academic-announcement", icon: Calendar },
+            { label: "Events", href: "/events", icon: Calendar },
         ],
     },
     studentServices: {
