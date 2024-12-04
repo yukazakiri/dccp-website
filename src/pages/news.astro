@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
 import Block01Navigation from "../components/kokonutui/block-01-nav";
 import { facebookPosts } from '../data/facebook-posts';
 
@@ -102,60 +103,43 @@ const allNewsItems = [...fbNewsItems];
             <div class="container mx-auto px-4 md:px-6">
                 <h2 class="text-2xl font-bold text-gray-800 mb-8">Recent News</h2>
                 <div class="grid gap-8 md:grid-cols-3">
-                    {allNewsItems.filter(item => !item.featured).length > 0 ? (
-                        allNewsItems.filter(item => !item.featured).map(item => (
-                            <div class="group bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                                <div class="aspect-video w-full overflow-hidden rounded-t-lg">
-                                    <img 
-                                        src={item.image} 
-                                        alt={item.title}
-                                        class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
-                                    />
-                                </div>
-                                <div class="p-6">
-                                    <div class="flex items-center gap-4 mb-3">
-                                        <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
-                                            {item.category}
-                                        </span>
-                                        <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
-                                    </div>
-                                    <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
-                                        {item.title}
-                                    </h3>
-                                    <p class="text-gray-600 text-sm">{item.excerpt}</p>
-                                    <a href={item.fbLink} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
-                                        Read more
-                                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
-                                        </svg>
-                                    </a>
-                                </div>
+                    {allNewsItems.filter(item => !item.featured).map(item => (
+                        <div class="group bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
+                            <div class="aspect-video w-full overflow-hidden rounded-t-lg">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                />
                             </div>
-                        ))
-                    ) : (
-                        <div class="col-span-3">
-                            <div class="bg-white rounded-lg overflow-hidden shadow-md p-8">
-                                <div class="flex flex-col items-center justify-center text-center">
-                                    <div class="w-16 h-16 mb-4 text-blue-600">
-                                        <svg class="w-full h-full" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 20H5a2 2 0 01-2-2V6a2 2 0 012-2h10a2 2 0 012 2v1m2 13a2 2 0 01-2-2V7m2 13a2 2 0 002-2V9a2 2 0 00-2-2h-2m-4-3H9M7 16h6M7 8h6v4H7V8z" />
-                                        </svg>
-                                    </div>
-                                    <h3 class="text-xl font-semibold text-gray-900 mb-2">No News Available</h3>
-                                    <p class="text-gray-500 max-w-md">Stay tuned! News and updates will be posted here as they become available.</p>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                        {item.category}
+                                    </span>
+                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
                                 </div>
+                                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p class="text-gray-600 text-sm">{item.excerpt}</p>
+                                <a href={item.fbLink} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
                             </div>
                         </div>
-                    )}
+                    ))}
                 </div>
 
-                {allNewsItems.filter(item => !item.featured).length > 0 && (
-                    <div class="flex justify-center mt-12">
-                        <button class="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium text-white shadow-lg transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700">
-                            Load More News
-                        </button>
-                    </div>
-                )}
+                <!-- Load More Button -->
+                <div class="flex justify-center mt-12">
+                    <button class="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium text-white shadow-lg transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700">
+                        Load More News
+                    </button>
+                </div>
             </div>
         </section>
 
@@ -183,6 +167,7 @@ const allNewsItems = [...fbNewsItems];
             </div>
         </section>
     </main>
+    <Footer />
 </Layout>
 
 <style>
