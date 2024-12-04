@@ -28,7 +28,6 @@ const MENU_ITEMS = {
             { label: "Student Portal", href: "https://dccp-portal-v1-beta.vercel.app", icon: LogIn },
             { label: "Online Enrollment", href: "/enrollment", icon: FileText },
             { label: "Scholarships", href: "/scholarships", icon: GraduationCap },
-            { label: "Library", href: "/library", icon: Library },
         ],
     },
     about: {
@@ -37,7 +36,7 @@ const MENU_ITEMS = {
         items: [
             { label: "About DCCP", href: "/about", icon: School },
             { label: "Our History", href: "/history", icon: BookOpen },
-            { label: "Facilities", href: "/facilities", icon: Building2 },
+            { label: "Policy Guidelines", href: "/student-policy-guidelines", icon: Building2 },
             { label: "Contact Us", href: "/contact", icon: Phone },
         ],
     },

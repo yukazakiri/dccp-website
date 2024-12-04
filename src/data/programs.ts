@@ -36,10 +36,10 @@ export const programsData: ProgramCategory[] = [
           "Scientific Research"
         ],
         color: {
-          from: "blue-600",
-          to: "blue-400",
-          iconBg: "blue-100",
-          iconText: "blue-600"
+          from: "teal-700",
+          to: "teal-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -54,10 +54,10 @@ export const programsData: ProgramCategory[] = [
           "Marketing"
         ],
         color: {
-          from: "green-600",
-          to: "green-400",
-          iconBg: "green-100",
-          iconText: "green-600"
+          from: "coral-700",
+          to: "coral-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -72,10 +72,10 @@ export const programsData: ProgramCategory[] = [
           "Philosophy"
         ],
         color: {
-          from: "purple-600",
-          to: "purple-400",
-          iconBg: "purple-100",
-          iconText: "purple-600"
+          from: "mint-700",
+          to: "mint-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -90,30 +90,30 @@ export const programsData: ProgramCategory[] = [
           "Hospitality"
         ],
         color: {
-          from: "orange-600",
-          to: "orange-400",
-          iconBg: "orange-100",
-          iconText: "orange-600"
+          from: "lavender-700",
+          to: "lavender-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
-      {
-        title: "Caregiving",
-        description: "Healthcare Services",
-        icon: "Heart",
-        features: [
-          "Basic Healthcare",
-          "Patient Care",
-          "First Aid and Safety",
-          "Medical Terminology",
-          "Healthcare Ethics"
-        ],
-        color: {
-          from: "red-600",
-          to: "red-400",
-          iconBg: "red-100",
-          iconText: "red-600"
-        }
-      },
+      // {
+      //   title: "Caregiving",
+      //   description: "Healthcare Services",
+      //   icon: "Heart",
+      //   features: [
+      //     "Basic Healthcare",
+      //     "Patient Care",
+      //     "First Aid and Safety",
+      //     "Medical Terminology",
+      //     "Healthcare Ethics"
+      //   ],
+      //   color: {
+      //     from: "red-600",
+      //     to: "red-400",
+      //     iconBg: "red-100",
+      //     iconText: "red-600"
+      //   }
+      // },
       {
         title: "ICT",
         description: "Information and Communications Technology",
@@ -126,10 +126,10 @@ export const programsData: ProgramCategory[] = [
           "Database Management"
         ],
         color: {
-          from: "indigo-600",
-          to: "indigo-400",
-          iconBg: "indigo-100",
-          iconText: "indigo-600"
+          from: "orange-700",
+          to: "orange-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       }
     ]
@@ -150,10 +150,10 @@ export const programsData: ProgramCategory[] = [
           "Basic Baking"
         ],
         color: {
-          from: "amber-600",
-          to: "amber-400",
-          iconBg: "amber-100",
-          iconText: "amber-600"
+          from: "teal-700",
+          to: "teal-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -168,10 +168,10 @@ export const programsData: ProgramCategory[] = [
           "Safety Protocols"
         ],
         color: {
-          from: "teal-600",
-          to: "teal-400",
-          iconBg: "teal-100",
-          iconText: "teal-600"
+          from: "blue-600",
+          to: "blue-200",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -186,10 +186,10 @@ export const programsData: ProgramCategory[] = [
           "Healthcare Ethics"
         ],
         color: {
-          from: "pink-600",
-          to: "pink-400",
-          iconBg: "pink-100",
-          iconText: "pink-600"
+          from: "mint-700",
+          to: "mint-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -204,10 +204,10 @@ export const programsData: ProgramCategory[] = [
           "Basic Pharmacology"
         ],
         color: {
-          from: "rose-600",
-          to: "rose-400",
-          iconBg: "rose-100",
-          iconText: "rose-600"
+          from: "red-600",
+          to: "red-400",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -222,10 +222,10 @@ export const programsData: ProgramCategory[] = [
           "Product Presentation"
         ],
         color: {
-          from: "yellow-600",
-          to: "yellow-400",
-          iconBg: "yellow-100",
-          iconText: "yellow-600"
+          from: "yellow-50",
+          to: "yellow-900",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -240,10 +240,10 @@ export const programsData: ProgramCategory[] = [
           "Safety and Sanitation"
         ],
         color: {
-          from: "violet-600",
-          to: "violet-400",
-          iconBg: "violet-100",
-          iconText: "violet-600"
+          from: "teal-700",
+          to: "teal-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -258,10 +258,10 @@ export const programsData: ProgramCategory[] = [
           "Technical Support"
         ],
         color: {
-          from: "cyan-600",
-          to: "cyan-400",
-          iconBg: "cyan-100",
-          iconText: "cyan-600"
+          from: "coral-700",
+          to: "coral-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       }
     ]
@@ -282,10 +282,10 @@ export const programsData: ProgramCategory[] = [
           "Hospitality Marketing"
         ],
         color: {
-          from: "fuchsia-600",
-          to: "fuchsia-400",
-          iconBg: "fuchsia-100",
-          iconText: "fuchsia-600"
+          from: "red-600",
+          to: "red-400",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -300,10 +300,10 @@ export const programsData: ProgramCategory[] = [
           "Entrepreneurship"
         ],
         color: {
-          from: "emerald-600",
-          to: "emerald-400",
-          iconBg: "emerald-100",
-          iconText: "emerald-600"
+          from: "lavender-700",
+          to: "lavender-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       },
       {
@@ -318,10 +318,10 @@ export const programsData: ProgramCategory[] = [
           "Cybersecurity"
         ],
         color: {
-          from: "sky-600",
-          to: "sky-400",
-          iconBg: "sky-100",
-          iconText: "sky-600"
+          from: "orange-700",
+          to: "orange-100",
+          iconBg: "gray-50",
+          iconText: "black"
         }
       }
     ]

@@ -17,14 +17,23 @@ interface Props {
 
 const { title, description, icon, features, color } = Astro.props;
 const Icon = Icons[icon] as LucideIcon;
+
+// Pre-construct the color classes to ensure Tailwind picks them up
+const gradientClasses = `from-${color.from} to-${color.to}`;
+const iconBgClass = `bg-${color.iconBg}`;
+const iconTextClass = `text-${color.iconText}`;
 ---
 
 <div class="group relative bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300">
-  <div class={`absolute inset-0 bg-gradient-to-r from-${color.from} to-${color.to} transform -skew-y-12 translate-y-32 group-hover:translate-y-28 transition-transform duration-300`}></div>
+  <div class:list={[
+    'absolute inset-0 bg-gradient-to-r transform -skew-y-12 translate-y-32 group-hover:translate-y-28 transition-transform duration-300',
+    `from-${color.from}`,
+    `to-${color.to}`
+  ]}></div>
   <div class="relative p-6">
     <div class="flex items-center gap-3 mb-4">
-      <div class={`p-2 bg-${color.iconBg} rounded-lg`}>
-        {Icon && <Icon className={`w-6 h-6 text-${color.iconText}`} />}
+      <div class:list={['p-2 rounded-lg', `bg-${color.iconBg}`]}>
+        {Icon && <Icon class:list={['w-6 h-6', `text-${color.iconText}`]} />}
       </div>
       <h3 class="text-xl font-semibold">{title}</h3>
     </div>
@@ -32,7 +41,7 @@ const Icon = Icons[icon] as LucideIcon;
     <ul class="text-gray-600 space-y-2 mb-8">
       {features.map((feature) => (
         <li class="flex items-center gap-2">
-          <Icons.CheckCircle2 className="w-4 h-4 text-green-500" />
+          <Icons.CheckCircle2 class:list={['w-4 h-4', `text-${color.iconText}`]} />
           {feature}
         </li>
       ))}

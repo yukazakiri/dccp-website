@@ -1,12 +1,28 @@
+---
+import { Image } from 'astro:assets';
+import AboutusJpg from '../assets/images/aboutus.jpg';
+---
+
 <section class="flex items-center bg-blue-300 py-32 md:py-20 lg:py-30">
     <div class="container mx-auto px-4 md:px-6 py-4">
         <div class="grid gap-10 lg:grid-cols-2 items-center">
             <div class="relative">
-                <img
+                <!-- <img
                     alt="DCCP Baguio Campus"
                     class="w-full rounded-xl object-cover object-center aspect-[4/3]"
-                    src="https://placehold.co/600x400"
+                    src="assets/images/aboutus.jpg"
+                /> -->
+
+                <Image 
+                    src="https://scontent.fcrk2-3.fna.fbcdn.net/v/t1.6435-9/87541546_2842355015849306_5657099896000348160_n.jpg?_nc_cat=107&ccb=1-7&_nc_sid=cf85f3&_nc_eui2=AeEidDuaq1aH4WAe0Ggummn0fvs174SlOkN--zXvhKU6QyPCkZtPuOypfP9JRG-ifDx9bMWn2-MuGuYH4U7O6QXf&_nc_ohc=kY-uskHqc7cQ7kNvgFIMXrm&_nc_zt=23&_nc_ht=scontent.fcrk2-3.fna&_nc_gid=Ac5Vh5aDJKmj-euuiB96vrz&oh=00_AYAecn9orm3FeqXJmaZSGMZbsCtUNrRtro5dyI0COFxuzQ&oe=67774EF4"
+                    alt="About DCCP Baguio"
+                    width={600}
+                    height={450}
+                      decoding="async"
+  loading="lazy"
+                    class="w-full rounded-xl object-cover object-center aspect-[4/3]"
                 />
+
             </div>
             <div class="space-y-4">
                 <h2 class="text-3xl font-bold tracking-tighter text-white-900 sm:text-5xl">About Us</h2>

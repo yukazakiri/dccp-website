@@ -1,0 +1,214 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+
+const scholarshipCategories = [
+    {
+        title: "Entry Discounts for New Students",
+        items: [
+            {
+                level: "With Highest Honors",
+                gwa: "98-100",
+                discount: "100%",
+                note: "on tuition only"
+            },
+            {
+                level: "With High Honors",
+                gwa: "95-97",
+                discount: "75%",
+                note: "on tuition only"
+            },
+            {
+                level: "With Honors",
+                gwa: "90-94",
+                discount: "50%",
+                note: "on tuition only"
+            },
+            {
+                level: "GWA",
+                gwa: "85-89",
+                discount: "25%",
+                note: "on tuition only"
+            }
+        ]
+    },
+    {
+        title: "Continuing Student Scholarships",
+        items: [
+            {
+                level: "Academic Excellence",
+                gwa: "91 and above",
+                discount: "100%",
+                note: "Discount applied during second semester"
+            },
+            {
+                level: "Academic Merit",
+                gwa: "88-90",
+                discount: "50%",
+                note: "Discount applied during second semester"
+            }
+        ]
+    }
+];
+
+const fees = [
+    {
+        name: "Tuition Fee",
+        amount: "₱325.00",
+        unit: "per unit"
+    },
+    {
+        name: "Laboratory Fee",
+        amount: "₱1,500.00",
+        unit: "per unit"
+    },
+    {
+        name: "Misc. and Registration Fee",
+        amount: "₱3,500.00",
+        unit: "total"
+    },
+    {
+        name: "School I.D and others",
+        amount: "₱300.00",
+        unit: "total"
+    }
+];
+---
+
+<Layout title="Academic Scholarships | DCCP">
+    <Block01Navigation client:load />
+    
+    <!-- Hero Section -->
+    <div class="relative bg-gradient-to-r from-blue-900 via-blue-800 to-blue-700 py-24">
+        <div class="absolute inset-0 bg-yellow-500/10"></div>
+        <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
+                    Academic Scholarships
+                </h1>
+                <p class="mt-6 text-xl text-yellow-100 max-w-3xl mx-auto">
+                    Empowering excellence through education - discover our scholarship opportunities
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <main class="bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+            <div class="space-y-16">
+                <!-- Special Notice -->
+                <div class="bg-gradient-to-r from-yellow-50 to-yellow-100 border-l-4 border-yellow-400 p-4 rounded-lg shadow-sm">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-yellow-500" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-800 font-medium">
+                                DCCP-SHS Graduates receive a special 25% Tuition Fee Discount regardless of GWA
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Scholarship Categories -->
+                {scholarshipCategories.map((category) => (
+                    <section class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                        <div class="bg-gradient-to-r from-blue-800 to-blue-700 px-6 py-4 relative">
+                            <div class="absolute inset-0 bg-yellow-500/10"></div>
+                            <h2 class="text-2xl font-semibold text-white relative">{category.title}</h2>
+                        </div>
+                        <div class="p-6">
+                            <div class="overflow-x-auto">
+                                <table class="min-w-full divide-y divide-gray-200">
+                                    <thead class="bg-blue-50">
+                                        <tr>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">Level</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">GWA Range</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">Discount</th>
+                                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-blue-700 uppercase tracking-wider">Note</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody class="bg-white divide-y divide-gray-200">
+                                        {category.items.map((item) => (
+                                            <tr class="hover:bg-blue-50/50">
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">{item.level}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{item.gwa}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-yellow-600 font-semibold">{item.discount}</td>
+                                                <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-600">{item.note}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </section>
+                ))}
+
+                <!-- School Fees Section -->
+                <section class="bg-white rounded-2xl shadow-lg overflow-hidden">
+                    <div class="bg-gradient-to-r from-blue-800 to-blue-700 px-6 py-4 relative">
+                        <div class="absolute inset-0 bg-yellow-500/10"></div>
+                        <h2 class="text-2xl font-semibold text-white relative">School Fees</h2>
+                    </div>
+                    <div class="p-6">
+                        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {fees.map((fee) => (
+                                <div class="bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+                                    <h3 class="text-lg font-semibold text-blue-900 mb-2">{fee.name}</h3>
+                                    <p class="text-2xl font-bold text-yellow-600">{fee.amount}</p>
+                                    <p class="text-sm text-blue-600">{fee.unit}</p>
+                                </div>
+                            ))}
+                        </div>
+
+                        <!-- Down Payment Notice -->
+                        <div class="mt-8 bg-gradient-to-br from-blue-50 to-blue-100/50 rounded-xl p-6">
+                            <div class="flex items-center">
+                                <div class="flex-shrink-0">
+                                    <svg class="h-6 w-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                                    </svg>
+                                </div>
+                                <div class="ml-3">
+                                    <h3 class="text-lg font-medium text-blue-900">Down Payment Required</h3>
+                                    <p class="mt-2 text-sm text-blue-600">
+                                        A down payment of <span class="font-semibold text-yellow-600">₱3,500</span> is required for enrollment.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Notes -->
+                        <div class="mt-6 text-sm text-blue-600">
+                            <p>* All discounts apply to Tuition Fee only. Miscellaneous fees are not included in the discounts.</p>
+                            <p class="mt-2">* Academic Scholarships for continuing students are applied during the SECOND SEMESTER.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- CTA Section -->
+                <section class="bg-gradient-to-r from-blue-800 to-blue-700 rounded-2xl shadow-lg overflow-hidden relative">
+                    <div class="absolute inset-0 bg-yellow-500/10"></div>
+                    <div class="px-6 py-8 md:px-12 text-center relative">
+                        <h2 class="text-2xl font-bold text-white mb-4">Ready to Start Your Journey?</h2>
+                        <p class="text-yellow-100 mb-6">Take the first step towards your future with DCCP's academic scholarships.</p>
+                        <a href="/enrollment" class="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md text-blue-800 bg-yellow-100 hover:bg-yellow-200 transition-colors duration-200">
+                            Apply Now
+                            <svg class="ml-2 -mr-1 h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+                            </svg>
+                        </a>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+</Layout>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+</style>
