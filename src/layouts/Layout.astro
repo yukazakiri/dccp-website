@@ -12,7 +12,7 @@ import "../assets/main.css";
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="description" content="Astro description" />
+		<meta name="description" content="Data Center College of the Philippines (DCCP) - Baguio Campus. Offering quality education in Information Technology, Computer Science, and Business courses." />
 		<meta name="viewport" content="width=device-width" />
 		
 		<!-- Favicon -->
@@ -39,6 +39,20 @@ import "../assets/main.css";
 		/>
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-thin-rounded/css/uicons-thin-rounded.css'>
 		<link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.6.0/uicons-solid-rounded/css/uicons-solid-rounded.css'>
+	
+		<!-- Open Graph / Facebook -->
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content="https://dccp-website.vercel.app/" />
+		<meta property="og:title" content={title + " | DCCP Baguio"} />
+		<meta property="og:description" content="Data Center College of the Philippines (DCCP) - Baguio Campus. Offering quality education in Information Technology, Computer Science, and Business courses." />
+		<meta property="og:image" content="https://dccp-website.vercel.app/og-image.png" />
+
+		<!-- Twitter -->
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content="https://dccp-website.vercel.app/" />
+		<meta property="twitter:title" content={title + " | DCCP Baguio"} />
+		<meta property="twitter:description" content="Data Center College of the Philippines (DCCP) - Baguio Campus. Offering quality education in Information Technology, Computer Science, and Business courses." />
+		<meta property="twitter:image" content="https://dccp-website.vercel.app/og-image.png" />
 	
 		<title>{title}</title>
 	</head>
