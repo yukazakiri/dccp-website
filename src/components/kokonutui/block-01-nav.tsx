@@ -17,17 +17,18 @@ const MENU_ITEMS = {
         label: "News & Updates",
         icon: Newspaper,
         items: [
-            { label: "News & Announcements", href: "/news", icon: Newspaper },
-            { label: "Events", href: "/events", icon: Calendar },
+            { label: "School News", href: "/news", icon: Newspaper },
+            { label: "Academic Announcements", href: "/academic-announcement", icon: Calendar },
         ],
     },
     studentServices: {
         label: "Student Services",
         icon: BookOpen,
         items: [
-            { label: "Student Portal", href: "https://dccp-portal-v1-beta.vercel.app", icon: LogIn },
-            { label: "Online Enrollment", href: "/enrollment", icon: FileText },
+            { label: "Student Portal", href: "/student-portal", icon: LogIn },
+            { label: "Online Enrollment", href: "/coming-soon", icon: FileText },
             { label: "Scholarships", href: "/scholarships", icon: GraduationCap },
+            { label: "Library", href: "/library", icon: Library },
         ],
     },
     about: {
@@ -36,6 +37,7 @@ const MENU_ITEMS = {
         items: [
             { label: "About DCCP", href: "/about", icon: School },
             { label: "Our History", href: "/history", icon: BookOpen },
+            { label: "Facilities", href: "/facilities", icon: School },
             { label: "Policy Guidelines", href: "/student-policy-guidelines", icon: Building2 },
             { label: "Contact Us", href: "/contact", icon: Phone },
         ],
@@ -132,7 +134,7 @@ const Block01Navigation = () => {
 
                     <div className="hidden lg:flex lg:items-center lg:space-x-3">
                         <motion.a
-                            href="https://dccp-portal-v1-beta.vercel.app"
+                            href="/student-portal"
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-blue-600 bg-blue-50/50 rounded-full hover:bg-blue-100/50 transition-all"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}
@@ -141,7 +143,7 @@ const Block01Navigation = () => {
                             Student Portal
                         </motion.a>
                         <motion.a
-                            href="/enrollment"
+                            href="/coming-soon"
                             className="inline-flex items-center px-3 py-2 text-sm font-medium text-white bg-blue-600/90 rounded-full hover:bg-blue-700/90 transition-all"
                             whileHover={{ scale: 1.05 }}
                             whileTap={{ scale: 0.95 }}

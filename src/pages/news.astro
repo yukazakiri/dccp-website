@@ -11,14 +11,83 @@ interface NewsItem {
   date: string;
   content: string;
   link: string;
-  type: 'facebook' | 'announcement';
+  type: 'facebook' | 'announcement' | 'event' | 'academic';
   image: string;
   excerpt: string;
   featured: boolean;
   category: string;
-  fbLink: string;
+  fbLink?: string;
   markdown: string;
 }
+
+// Mock announcements and events
+const mockNews: NewsItem[] = [
+  {
+    id: 'announcement-1',
+    title: 'Enrollment Now Open for Academic Year 2024-2025',
+    date: '2024-01-15',
+    content: 'DCCP is now accepting enrollments for the upcoming academic year. Early bird discounts available until March 31st.',
+    link: '/enrollment',
+    type: 'announcement',
+    image: 'https://placehold.co/600x400/2563eb/FFFFFF/png?text=Enrollment+2024',
+    excerpt: 'Get ready for another exciting academic year! Early bird enrollees can enjoy special discounts and flexible payment terms.',
+    featured: true,
+    category: 'Announcement',
+    markdown: 'Full enrollment details and requirements...'
+  },
+  {
+    id: 'event-1',
+    title: 'DCCP Tech Summit 2024',
+    date: '2024-02-20',
+    content: 'Join us for our annual technology summit featuring industry experts and innovative showcases.',
+    link: '/events/tech-summit',
+    type: 'event',
+    image: 'https://placehold.co/600x400/fbbf24/000000/png?text=Tech+Summit',
+    excerpt: 'Experience the future of technology with hands-on workshops, keynote speakers, and networking opportunities.',
+    featured: true,
+    category: 'Event',
+    markdown: 'Event schedule and registration details...'
+  },
+  {
+    id: 'academic-1',
+    title: 'New Course Offerings in Data Science',
+    date: '2024-01-30',
+    content: 'DCCP introduces new specialized tracks in Data Science and Machine Learning.',
+    link: '/academics/data-science',
+    type: 'academic',
+    image: 'https://placehold.co/600x400/4f46e5/FFFFFF/png?text=Data+Science',
+    excerpt: 'Prepare for the future with our comprehensive Data Science program.',
+    featured: false,
+    category: 'Academic',
+    markdown: 'Course curriculum and requirements...'
+  },
+  {
+    id: 'announcement-2',
+    title: 'Campus Facilities Upgrade',
+    date: '2024-01-25',
+    content: 'DCCP invests in state-of-the-art computer laboratories and smart classrooms.',
+    link: '/facilities',
+    type: 'announcement',
+    image: 'https://placehold.co/600x400/0ea5e9/FFFFFF/png?text=New+Facilities',
+    excerpt: 'Experience enhanced learning with our upgraded campus facilities.',
+    featured: false,
+    category: 'Announcement',
+    markdown: 'Details of facility improvements...'
+  },
+  {
+    id: 'event-2',
+    title: 'Industry Partnership Forum',
+    date: '2024-02-15',
+    content: 'DCCP partners with leading tech companies for internship and career opportunities.',
+    link: '/events/partnership-forum',
+    type: 'event',
+    image: 'https://placehold.co/600x400/6366f1/FFFFFF/png?text=Partnership+Forum',
+    excerpt: 'Connect with industry leaders and explore career opportunities.',
+    featured: false,
+    category: 'Event',
+    markdown: 'Partnership details and benefits...'
+  }
+];
 
 // Convert Facebook posts to news items
 const fbNewsItems: NewsItem[] = facebookPosts.map((post: any, index: number) => ({
@@ -30,14 +99,21 @@ const fbNewsItems: NewsItem[] = facebookPosts.map((post: any, index: number) => 
   type: 'facebook',
   image: post.full_picture || "https://placehold.co/600x400/2563eb/FFFFFF/png?text=DCCP+Update",
   excerpt: post.message || '',
-  featured: index < 2,
+  featured: false,
   category: 'Social Media Update',
   fbLink: post.permalink_url,
   markdown: post.message || ''
 }));
 
-// Combine all news items
-const allNewsItems = [...fbNewsItems];
+// Combine all news items and sort by date
+const allNewsItems = [...mockNews, ...fbNewsItems].sort((a, b) => 
+  new Date(b.date).getTime() - new Date(a.date).getTime()
+);
+
+// Get featured items
+const featuredItems = allNewsItems.filter(item => item.featured);
+// Get non-featured items
+const recentItems = allNewsItems.filter(item => !item.featured).slice(0, 6);
 
 ---
 
@@ -46,7 +122,7 @@ const allNewsItems = [...fbNewsItems];
     <main class="flex-1">
         <!-- Hero Section -->
         <section class="w-full py-16 md:py-24 lg:py-32 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-white via-blue-300 to-blue-300 animate-gradient"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-blue-300 to-blue-700"></div>
             <div class="absolute inset-0 bg-[url('/noise.png')] opacity-20"></div>
             <div class="container mx-auto px-4 md:px-6 relative">
                 <div class="flex flex-col items-center space-y-4 text-center">
@@ -63,10 +139,22 @@ const allNewsItems = [...fbNewsItems];
         <!-- Featured News Section -->
         <section class="w-full py-12 bg-white">
             <div class="container mx-auto px-4 md:px-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-8">Featured News</h2>
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold text-blue-900">Featured News</h2>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-50 rounded-full">
+                            {featuredItems.length} Featured Stories
+                        </span>
+                    </div>
+                </div>
                 <div class="grid gap-8 md:grid-cols-2">
-                    {allNewsItems.filter(item => item.featured).map(item => (
-                        <div class="group relative overflow-hidden rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 bg-white">
+                    {featuredItems.map(item => (
+                        <div class="group relative overflow-hidden rounded-xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300 bg-white">
+                            <div class="absolute top-4 right-4 z-10">
+                                <span class="px-3 py-1 text-sm font-medium text-white bg-blue-600/90 rounded-full backdrop-blur-sm">
+                                    {item.category}
+                                </span>
+                            </div>
                             <div class="aspect-video w-full overflow-hidden">
                                 <img 
                                     src={item.image} 
@@ -75,17 +163,19 @@ const allNewsItems = [...fbNewsItems];
                                 />
                             </div>
                             <div class="p-6">
-                                <div class="flex items-center gap-4 mb-3">
-                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
-                                        {item.category}
-                                    </span>
-                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
-                                </div>
-                                <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                <time class="text-sm text-blue-600 mb-2 block">{new Date(item.date).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}</time>
+                                <h3 class="text-xl font-bold text-blue-900 mb-3 group-hover:text-blue-600 transition-colors">
                                     {item.title}
                                 </h3>
-                                <p class="text-gray-600">{item.excerpt}</p>
-                                <a href={item.fbLink} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                <p class="text-blue-700/80 mb-4 line-clamp-2">{item.excerpt}</p>
+                                <a 
+                                    href={item.fbLink || item.link} 
+                                    class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                                >
                                     Read more
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -99,13 +189,25 @@ const allNewsItems = [...fbNewsItems];
         </section>
 
         <!-- Recent News Section -->
-        <section class="w-full py-12 bg-gray-50">
+        <section class="w-full py-12 bg-gradient-to-b from-blue-50 to-white">
             <div class="container mx-auto px-4 md:px-6">
-                <h2 class="text-2xl font-bold text-gray-800 mb-8">Recent News</h2>
+                <div class="flex items-center justify-between mb-8">
+                    <h2 class="text-2xl font-bold text-blue-900">Recent Updates</h2>
+                    <div class="flex gap-2">
+                        <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-50 rounded-full">
+                            {recentItems.length} Stories
+                        </span>
+                    </div>
+                </div>
                 <div class="grid gap-8 md:grid-cols-3">
-                    {allNewsItems.filter(item => !item.featured).map(item => (
-                        <div class="group bg-white rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300">
-                            <div class="aspect-video w-full overflow-hidden rounded-t-lg">
+                    {recentItems.map(item => (
+                        <div class="group bg-white rounded-xl shadow-lg border border-blue-100 hover:shadow-xl transition-all duration-300">
+                            <div class="aspect-video w-full overflow-hidden rounded-t-xl relative">
+                                <div class="absolute top-4 right-4 z-10">
+                                    <span class="px-3 py-1 text-sm font-medium text-white bg-blue-600/90 rounded-full backdrop-blur-sm">
+                                        {item.category}
+                                    </span>
+                                </div>
                                 <img 
                                     src={item.image} 
                                     alt={item.title}
@@ -113,17 +215,19 @@ const allNewsItems = [...fbNewsItems];
                                 />
                             </div>
                             <div class="p-6">
-                                <div class="flex items-center gap-4 mb-3">
-                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
-                                        {item.category}
-                                    </span>
-                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
-                                </div>
-                                <h3 class="text-lg font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                <time class="text-sm text-blue-600 mb-2 block">{new Date(item.date).toLocaleDateString('en-US', {
+                                    year: 'numeric',
+                                    month: 'long',
+                                    day: 'numeric'
+                                })}</time>
+                                <h3 class="text-lg font-bold text-blue-900 mb-3 group-hover:text-blue-600 transition-colors line-clamp-2">
                                     {item.title}
                                 </h3>
-                                <p class="text-gray-600 text-sm">{item.excerpt}</p>
-                                <a href={item.fbLink} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                <p class="text-blue-700/80 text-sm mb-4 line-clamp-2">{item.excerpt}</p>
+                                <a 
+                                    href={item.fbLink || item.link} 
+                                    class="inline-flex items-center text-blue-600 hover:text-blue-700 font-medium"
+                                >
                                     Read more
                                     <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
@@ -136,33 +240,12 @@ const allNewsItems = [...fbNewsItems];
 
                 <!-- Load More Button -->
                 <div class="flex justify-center mt-12">
-                    <button class="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium text-white shadow-lg transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700">
+                    <button class="inline-flex items-center justify-center rounded-xl bg-blue-600 px-8 py-3 text-sm font-medium text-white shadow-lg transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700">
                         Load More News
+                        <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                        </svg>
                     </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Newsletter Section -->
-        <section class="w-full py-12 bg-white">
-            <div class="container mx-auto px-4 md:px-6">
-                <div class="max-w-2xl mx-auto text-center">
-                    <h2 class="text-2xl font-bold text-gray-800 mb-4">Stay Updated</h2>
-                    <p class="text-gray-600 mb-6">Subscribe to our newsletter to receive the latest news and updates directly in your inbox.</p>
-                    <form class="flex gap-4 max-w-md mx-auto">
-                        <input 
-                            type="email" 
-                            placeholder="Enter your email"
-                            class="flex-1 px-4 py-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-                            required
-                        />
-                        <button 
-                            type="submit"
-                            class="inline-flex items-center justify-center rounded-md bg-blue-600 px-6 py-2 text-sm font-medium text-white shadow-lg transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-700"
-                        >
-                            Subscribe
-                        </button>
-                    </form>
                 </div>
             </div>
         </section>
@@ -171,37 +254,15 @@ const allNewsItems = [...fbNewsItems];
 </Layout>
 
 <style>
-    @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .animate-gradient {
-        background-size: 200% 200%;
-        animation: gradient 15s ease infinite;
+    .line-clamp-2 {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 </style>
 
 <script>
-    document.addEventListener('DOMContentLoaded', () => {
-        const navLinks = document.querySelectorAll('a[href^="#"]');
-        
-        navLinks.forEach(link => {
-            link.addEventListener('click', (e: Event) => {
-                e.preventDefault();
-                const target = e.currentTarget as HTMLAnchorElement;
-                const targetId = target.getAttribute('href');
-                if (targetId) {
-                    const targetElement = document.querySelector(targetId);
-                    targetElement?.scrollIntoView({
-                        behavior: 'smooth'
-                    });
-                }
-            });
-        });
-    });
-
     // Newsletter form submission
     const form = document.querySelector('form');
     form?.addEventListener('submit', (e) => {

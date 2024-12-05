@@ -1,137 +1,86 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Block01Navigation from '../components/kokonutui/block-01-nav';
-import SemesterSection from '../components/calendar/SemesterSection.astro';
 import { academicCalendar } from '../data/academic-calendar';
+import { format, parseISO } from 'date-fns';
 
-const categoryFilters = [
-  { id: 'all', label: 'All Events' },
-  { id: 'academic', label: 'Academic' },
-  { id: 'exam', label: 'Examinations' },
-  { id: 'event', label: 'Events' },
-  { id: 'enrollment', label: 'Enrollment' },
-  { id: 'holiday', label: 'Holidays' }
-];
+const formatDate = (dateStr: string) => {
+  const date = parseISO(dateStr);
+  return format(date, 'MMMM dd, yyyy');
+};
 ---
 
 <Layout title="Academic Calendar - DCCP Baguio">
   <Block01Navigation client:only="react" />
-  
-  <div class="min-h-screen bg-gradient-to-b from-white to-gray-50">
+  <div class="pt-16 bg-gradient-to-b from-white via-blue-300 to-gray-50 min-h-screen">
     <!-- Hero Section -->
-    <div class="relative overflow-hidden bg-blue-600 text-white py-16">
+    <div class="relative overflow-hidden text-slate-700 py-16">
       <div class="absolute inset-0 bg-[url('/images/pattern.png')] opacity-10"></div>
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="text-center">
           <h1 class="text-4xl font-bold mb-4">Academic Calendar</h1>
-          <p class="text-xl text-blue-100">Academic Year {academicCalendar.year}</p>
+          <p class="text-xl">Academic Year {academicCalendar.year}</p>
         </div>
       </div>
     </div>
 
     <!-- Main Content -->
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <!-- Category Filters -->
-      <div class="mb-8">
-        <div class="flex flex-wrap gap-2">
-          {categoryFilters.map((filter) => (
-            <button
-              class="px-4 py-2 rounded-full text-sm font-medium transition-colors duration-200
-                     hover:bg-blue-100 hover:text-blue-800
-                     focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2
-                     data-[active=true]:bg-blue-600 data-[active=true]:text-white
-                     data-[active=false]:bg-gray-100 data-[active=false]:text-gray-800"
-              data-active={filter.id === 'all'}
-            >
-              {filter.label}
-            </button>
-          ))}
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+      {academicCalendar.semesters.map((semester) => (
+        <div class="mb-12">
+          <div class="mb-6">
+            <h2 class="text-2xl font-bold text-gray-900">{semester.name}</h2>
+            <p class="text-gray-600">
+              {formatDate(semester.startDate)} - {formatDate(semester.endDate)}
+            </p>
+          </div>
+          
+          <div class="space-y-4">
+            {semester.events.map((event) => (
+              <div class={`p-4 rounded-lg border ${
+                event.category === 'academic' ? 'bg-blue-50 border-blue-200' :
+                event.category === 'exam' ? 'bg-purple-50 border-purple-200' :
+                event.category === 'event' ? 'bg-green-50 border-green-200' :
+                event.category === 'enrollment' ? 'bg-orange-50 border-orange-200' :
+                'bg-red-50 border-red-200'
+              }`}>
+                <div class="flex justify-between items-start gap-4">
+                  <div>
+                    <h3 class="font-semibold text-gray-900">{event.title}</h3>
+                    {event.description && (
+                      <p class="mt-1 text-sm text-gray-600">{event.description}</p>
+                    )}
+                  </div>
+                  <span class="text-sm px-2 py-1 rounded-full bg-white/50 font-medium capitalize">
+                    {event.category}
+                  </span>
+                </div>
+                <div class="mt-3 flex items-center gap-4 text-sm text-gray-600">
+                  <span class="flex items-center">
+                    <svg class="w-4 h-4 mr-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                    </svg>
+                    {event.endDate ? (
+                      <span>{formatDate(event.startDate)} - {formatDate(event.endDate)}</span>
+                    ) : (
+                      <span>{formatDate(event.startDate)}</span>
+                    )}
+                  </span>
+                  {event.location && (
+                    <span class="flex items-center">
+                      <svg class="w-4 h-4 mr-1.5 opacity-70" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                      {event.location}
+                    </span>
+                  )}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-
-      <!-- Legend -->
-      <div class="mb-8 p-4 bg-white rounded-lg shadow-sm">
-        <h3 class="text-lg font-semibold mb-3">Event Categories</h3>
-        <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-          <div class="flex items-center gap-2">
-            <div class="w-4 h-4 rounded bg-blue-100 border border-blue-200"></div>
-            <span class="text-sm">Academic</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="w-4 h-4 rounded bg-purple-100 border border-purple-200"></div>
-            <span class="text-sm">Examinations</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="w-4 h-4 rounded bg-green-100 border border-green-200"></div>
-            <span class="text-sm">Events</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="w-4 h-4 rounded bg-orange-100 border border-orange-200"></div>
-            <span class="text-sm">Enrollment</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <div class="w-4 h-4 rounded bg-red-100 border border-red-200"></div>
-            <span class="text-sm">Holidays</span>
-          </div>
-        </div>
-      </div>
-
-      <!-- Calendar Sections -->
-      <div class="space-y-12">
-        {academicCalendar.semesters.map((semester) => (
-          <SemesterSection semester={semester} />
-        ))}
-      </div>
-
-      <!-- Download Section -->
-      <div class="mt-16 text-center">
-        <h3 class="text-2xl font-bold mb-4">Need a copy of the calendar?</h3>
-        <p class="text-gray-600 mb-6">Download the academic calendar for offline reference</p>
-        <div class="flex justify-center gap-4">
-          <a
-            href="#"
-            class="inline-flex items-center px-6 py-3 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition-colors duration-200"
-          >
-            <i class="fi fi-rr-download mr-2"></i>
-            Download PDF
-          </a>
-          <a
-            href="#"
-            class="inline-flex items-center px-6 py-3 rounded-lg bg-gray-100 text-gray-800 hover:bg-gray-200 transition-colors duration-200"
-          >
-            <i class="fi fi-rr-calendar mr-2"></i>
-            Add to Calendar
-          </a>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      const filterButtons = document.querySelectorAll('[data-category]');
-      const eventCards = document.querySelectorAll('.event-card') as NodeListOf<HTMLElement>;
-
-      filterButtons.forEach(button => {
-        button.addEventListener('click', () => {
-          // Update active state
-          filterButtons.forEach(btn => btn.classList.remove('active'));
-          button.classList.add('active');
-
-          // Filter events
-          const category = button.getAttribute('data-category');
-          if (category === 'all') {
-            eventCards.forEach(card => {
-              card.style.cssText = 'display: block';
-            });
-          } else {
-            eventCards.forEach(card => {
-              const cardCategory = card.getAttribute('data-category');
-              card.style.cssText = cardCategory === category ? 'display: block' : 'display: none';
-            });
-          }
-        });
-      });
-    });
-  </script>
 </Layout>

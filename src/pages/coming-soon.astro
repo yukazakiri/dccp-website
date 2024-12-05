@@ -1,0 +1,88 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/kokonutui/block-01-nav';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout title="Coming Soon - DCCP">
+    <Navigation client:load />
+    <div class="relative min-h-screen bg-gradient-to-b from-white via-blue-100 to-blue-700">
+        <!-- Decorative elements -->
+        <div class="absolute inset-0 bg-yellow-500/5"></div>
+
+        <!-- Main content -->
+        <div class="relative container mx-auto px-4 min-h-screen flex items-center justify-center">
+            <div class="text-center max-w-2xl mx-auto">
+                <!-- Coming Soon Badge -->
+                <div class="inline-block mb-6 animate-bounce">
+                    <span class="bg-yellow-100 text-yellow-800 text-sm font-medium px-4 py-1.5 rounded-full border border-yellow-200">
+                        Coming Soon
+                    </span>
+                </div>
+
+                <!-- Main Text -->
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-blue-900 mb-6">
+                    Something Amazing<br/>
+                    <span class="bg-gradient-to-r from-yellow-600 to-yellow-500 bg-clip-text text-transparent">is Coming</span>
+                </h1>
+                
+                <p class="text-lg text-blue-800 mb-12 max-w-xl mx-auto">
+                    We're crafting something special to enhance your DCCP experience. 
+                    Stay connected for the big reveal!
+                </p>
+
+                <!-- Preview Cards -->
+                <div class="grid sm:grid-cols-3 gap-6 mb-12">
+                    <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-yellow-200/50">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-yellow-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-blue-900 font-semibold mb-1">Lightning Fast</h3>
+                        <p class="text-blue-700 text-sm">Optimized for speed</p>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-yellow-200/50">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-yellow-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4" />
+                            </svg>
+                        </div>
+                        <h3 class="text-blue-900 font-semibold mb-1">Customizable</h3>
+                        <p class="text-blue-700 text-sm">Made for you</p>
+                    </div>
+
+                    <div class="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-yellow-200/50">
+                        <div class="w-12 h-12 rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center mx-auto mb-4">
+                            <svg class="w-6 h-6 text-yellow-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                        </div>
+                        <h3 class="text-blue-900 font-semibold mb-1">Secure</h3>
+                        <p class="text-blue-700 text-sm">Built-in protection</p>
+                    </div>
+                </div>
+
+                <!-- Social Links -->
+                <div class="space-y-4">
+                    <p class="text-sm text-blue-800 mb-4">Follow us for updates</p>
+                    <div class="flex justify-center space-x-4">
+                        <a 
+                            href="https://www.facebook.com/dccpofficial" 
+                            class="w-10 h-10 rounded-full bg-gradient-to-br from-yellow-100 to-yellow-200 flex items-center justify-center text-yellow-700 hover:from-yellow-200 hover:to-yellow-300 transition-colors"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <span class="sr-only">Facebook</span>
+                            <svg class="h-5 w-5" fill="currentColor" viewBox="0 0 24 24">
+                                <path d="M22 12c0-5.523-4.477-10-10-10S2 6.477 2 12c0 4.991 3.657 9.128 8.438 9.878v-6.987h-2.54V12h2.54V9.797c0-2.506 1.492-3.89 3.777-3.89 1.094 0 2.238.195 2.238.195v2.46h-1.26c-1.243 0-1.63.771-1.63 1.562V12h2.773l-.443 2.89h-2.33v6.988C18.343 21.128 22 16.991 22 12z"/>
+                            </svg>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <Footer />
+</Layout>

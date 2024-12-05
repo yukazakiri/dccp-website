@@ -1,0 +1,230 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Menu from "../components/Menu.astro";
+import Footer from "../components/Footer.astro";
+import Block01Navigation from "../components/kokonutui/block-01-nav";
+
+interface AcademicAnnouncement {
+  id: string;
+  title: string;
+  date: string;
+  content: string;
+  type: 'guidance' | 'student-affairs';
+  image: string;
+  excerpt: string;
+  featured: boolean;
+  category: string;
+  link: string;
+}
+
+// Sample announcements data
+const guidanceAnnouncements: AcademicAnnouncement[] = [
+  {
+    id: '1',
+    title: 'Career Counseling Week',
+    date: '2024-03-15',
+    content: 'Join us for a week of career guidance and counseling sessions...',
+    type: 'guidance',
+    image: "https://placehold.co/600x400/1e40af/FFFFFF/png?text=Career+Counseling",
+    excerpt: 'Explore career opportunities and get professional guidance from our counselors.',
+    featured: false,
+    category: 'Guidance',
+    link: '#'
+  },
+  {
+    id: '2',
+    title: 'Mental Health Awareness Seminar',
+    date: '2024-03-01',
+    content: 'Important seminar on mental health awareness...',
+    type: 'guidance',
+    image: "https://placehold.co/600x400/1e40af/FFFFFF/png?text=Mental+Health",
+    excerpt: 'Learn about mental health awareness and wellness strategies.',
+    featured: false,
+    category: 'Guidance',
+    link: '#'
+  }
+];
+
+const studentAffairsAnnouncements: AcademicAnnouncement[] = [
+  {
+    id: '3',
+    title: 'Student Council Elections',
+    date: '2024-03-20',
+    content: 'Participate in the upcoming student council elections...',
+    type: 'student-affairs',
+    image: "https://placehold.co/600x400/047857/FFFFFF/png?text=Student+Council",
+    excerpt: 'Exercise your right to vote in the student council elections.',
+    featured: false,
+    category: 'Student Affairs',
+    link: '#'
+  },
+  {
+    id: '4',
+    title: 'Campus Organizations Fair',
+    date: '2024-03-10',
+    content: 'Discover and join various campus organizations...',
+    type: 'student-affairs',
+    image: "https://placehold.co/600x400/047857/FFFFFF/png?text=Organizations+Fair",
+    excerpt: 'Explore different student organizations and find your community.',
+    featured: false,
+    category: 'Student Affairs',
+    link: '#'
+  }
+];
+
+// Get the latest announcements for featured section
+const allAnnouncements = [...guidanceAnnouncements, ...studentAffairsAnnouncements];
+const featuredAnnouncements = allAnnouncements
+  .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+  .slice(0, 2); // Get the 2 most recent announcements
+
+---
+
+<Layout title="Academic Announcements - Data Center College of the Philippines">
+    <Block01Navigation client:only="react" />
+    <main class="flex-1">
+        <!-- Hero Section -->
+        <section class="w-full py-16 md:py-24 lg:py-32 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-white via-blue-300 to-blue-300 animate-gradient"></div>
+            <div class="absolute inset-0 bg-[url('/noise.png')] opacity-20"></div>
+            <div class="container mx-auto px-4 md:px-6 relative">
+                <div class="flex flex-col items-center space-y-4 text-center">
+                    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white [text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)]">
+                        Academic Announcements
+                    </h1>
+                    <p class="max-w-[700px] text-white/90 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
+                        Stay informed about academic events, deadlines, and important announcements
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Featured Announcements Section -->
+        <section class="w-full py-12 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-8">Featured Announcements</h2>
+                <div class="grid gap-8 md:grid-cols-2">
+                    {featuredAnnouncements.map(item => (
+                        <div class="group relative overflow-hidden rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 bg-white">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                        {item.category}
+                                    </span>
+                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p class="text-gray-600">{item.excerpt}</p>
+                                <a href={item.link} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Guidance Office Announcements Section -->
+        <section class="w-full py-12 bg-gray-50">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-8">Guidance Office Announcements</h2>
+                <div class="grid gap-8 md:grid-cols-3">
+                    {guidanceAnnouncements.map(item => (
+                        <div class="group relative overflow-hidden rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 bg-white">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="px-3 py-1 text-sm font-medium text-blue-600 bg-blue-100 rounded-full">
+                                        {item.category}
+                                    </span>
+                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-600 transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p class="text-gray-600">{item.excerpt}</p>
+                                <a href={item.link} class="inline-flex items-center mt-4 text-blue-600 hover:text-blue-700">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+
+        <!-- Student Affairs Announcements Section -->
+        <section class="w-full py-12 bg-white">
+            <div class="container mx-auto px-4 md:px-6">
+                <h2 class="text-2xl font-bold text-gray-800 mb-8">Student Affairs Office Announcements</h2>
+                <div class="grid gap-8 md:grid-cols-3">
+                    {studentAffairsAnnouncements.map(item => (
+                        <div class="group relative overflow-hidden rounded-lg shadow-lg border border-gray-100 hover:shadow-xl transition-all duration-300 bg-white">
+                            <div class="aspect-video w-full overflow-hidden">
+                                <img 
+                                    src={item.image} 
+                                    alt={item.title}
+                                    class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-300"
+                                />
+                            </div>
+                            <div class="p-6">
+                                <div class="flex items-center gap-4 mb-3">
+                                    <span class="px-3 py-1 text-sm font-medium text-green-600 bg-green-100 rounded-full">
+                                        {item.category}
+                                    </span>
+                                    <time class="text-sm text-gray-500">{new Date(item.date).toLocaleDateString()}</time>
+                                </div>
+                                <h3 class="text-xl font-bold text-gray-800 mb-2 group-hover:text-green-600 transition-colors">
+                                    {item.title}
+                                </h3>
+                                <p class="text-gray-600">{item.excerpt}</p>
+                                <a href={item.link} class="inline-flex items-center mt-4 text-green-600 hover:text-green-700">
+                                    Read more
+                                    <svg class="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                    </svg>
+                                </a>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    .animate-gradient {
+        background-size: 200% 200%;
+        animation: gradient 15s ease infinite;
+    }
+</style>
