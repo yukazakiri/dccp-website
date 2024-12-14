@@ -17,6 +17,7 @@ export default defineConfig({
       }
     }), 
     react()
+    
   ],
   vite: {
     resolve: {
