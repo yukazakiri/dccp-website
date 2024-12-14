@@ -1,6 +1,5 @@
 ---
 
-
 import Menu from "../components/Menu.astro";
 import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
@@ -13,30 +12,32 @@ import ContactUs from "../components/contactUs.astro";
 import Location from "../components/location.astro";
 import ApplyNowCard from "../components/applyNowCard.astro";
 import ThemeToggle from "../components/ThemeToggle";
-
+import LoadingScreen from "../components/LoadingScreen.tsx";
 import Block01Navigation from "../components/kokonutui/block-01-nav";
+import { motion } from "framer-motion";
 ---
 
 <Layout title="Data Center College of the Philippines - Baguio City">
-	<Block01Navigation client:only="react" />
-	<main class="">
-		<HeroCard />
-		<AboutUs />
-		<Courses />
-		<ContactUs />
-		<Location />
-		<ApplyNowCard />
-		<Footer />
-		<!-- <InquireNow /> -->
-	</main>
+	<!-- <LoadingScreen client:load /> -->
+
+	
+		<Block01Navigation client:only="react" />
+		<main class="">
+			<HeroCard transition:animate="slide"/>
+			<AboutUs />
+			<Courses />
+			<ContactUs />
+			<Location />
+			<ApplyNowCard />
+			<Footer />
+			<!-- <InquireNow /> -->
+		</main>
+
 </Layout>
 
 <style>
-
 	main {
 	}
-
-
 
 	h1 {
 		color: #1c1d22;

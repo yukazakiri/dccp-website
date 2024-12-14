@@ -4,12 +4,12 @@ interface Props {
 }
 
 const { title } = Astro.props;
-
 import "../assets/main.css";
+import 'aos/dist/aos.css';
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" transition:name="root" transition:animate="none">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="description" content="Data Center College of the Philippines (DCCP) - Baguio Campus. Offering quality education in Information Technology, Computer Science, and Business courses." />
@@ -149,3 +149,14 @@ import "../assets/main.css";
 	window.localStorage.setItem("theme", theme);
 </script>
 
+<script>
+	import AOS from 'aos';
+
+
+// Initialize AOS
+AOS.init({
+//   once: true, // whether animation should happen only once
+  mirror: false, // whether elements should animate out while scrolling past them
+  offset: 120 // offset (in px) from the original trigger point
+});
+  </script>
