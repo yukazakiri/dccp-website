@@ -60,7 +60,17 @@ const Block01Navigation = () => {
     }, [isMenuOpen]);
 
     return (
-        <nav className="fixed top-0 left-0 right-0 bg-white/30 backdrop-blur-md z-50">
+        <motion.nav 
+            initial={{ y: -100, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ 
+                type: "spring",
+                stiffness: 100,
+                damping: 20,
+                duration: 0.3
+            }}
+            className="fixed top-0 left-0 right-0 bg-white/30 backdrop-blur-md z-50"
+        >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex justify-between items-center h-16">
                     <div className="flex-shrink-0">
@@ -281,7 +291,7 @@ const Block01Navigation = () => {
                     </>
                 )}
             </AnimatePresence>
-        </nav>
+        </motion.nav>
     );
 };
 
