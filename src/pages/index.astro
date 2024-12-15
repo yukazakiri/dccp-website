@@ -22,13 +22,15 @@ import { motion } from "framer-motion";
 
 	
 		<Block01Navigation client:only="react" />
-		<main class="">
-			<HeroCard transition:animate="slide"/>
-			<AboutUs />
-			<Courses />
-			<ContactUs />
-			<Location />
-			<ApplyNowCard />
+		<main class="flex-1 w-full overflow-x-hidden">
+			<div class="max-w-[100vw]">
+				<HeroCard transition:animate="slide"/>
+				<AboutUs />
+				<Courses />
+				<ContactUs />
+				<Location />
+				<ApplyNowCard />
+			</div>
 			<Footer />
 			<!-- <InquireNow /> -->
 		</main>
