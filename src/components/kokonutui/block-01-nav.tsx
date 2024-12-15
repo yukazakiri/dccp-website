@@ -1,4 +1,4 @@
-import { Menu, X, ChevronDown, GraduationCap, Users, Calendar, FileText, BookOpen, School, Library, Building2, Phone, Newspaper, LogIn } from "lucide-react";
+import { Menu, X, GraduationCap, Calendar, FileText, BookOpen, School, Library, Building2, Phone, Newspaper, LogIn } from "lucide-react";
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
