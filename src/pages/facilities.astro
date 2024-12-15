@@ -3,108 +3,116 @@ import Layout from "../layouts/Layout.astro";
 import Menu from "../components/Menu.astro";
 import Footer from "../components/Footer.astro";
 import Block01Navigation from "../components/kokonutui/block-01-nav";
-const animationClass = "opacity-0 translate-y-8";
+
+const facilities = [
+    {
+        title: "Computer Laboratories",
+        description: "Modern computer labs equipped with the latest hardware and software for hands-on learning experiences.",
+        image: "/images/IMG_0024.jpg",
+        color: "blue"
+    },
+    {
+        title: "Library",
+        description: "A comprehensive collection of academic resources, digital materials, and quiet study spaces.",
+        image: "/images/library.jpg",
+        color: "purple"
+    },
+    {
+        title: "Student Lounge",
+        description: "Comfortable spaces for relaxation, group study, and student collaboration.",
+        image: "/images/student-lounge.jpg",
+        color: "green"
+    },
+    {
+        title: "Lecture Halls",
+        description: "Spacious, well-equipped classrooms with modern presentation technology.",
+        image: "/images/lecture-hall.jpg",
+        color: "amber"
+    },
+    {
+        title: "Innovation Lab",
+        description: "A dedicated space for creative projects, prototyping, and technological innovation.",
+        image: "/images/innovation-lab.jpg",
+        color: "indigo"
+    },
+    {
+        title: "Cafeteria",
+        description: "Modern dining facilities offering nutritious meals and a comfortable dining environment.",
+        image: "/images/cafeteria.jpg",
+        color: "red"
+    }
+];
 ---
 
 <Layout title="Facilities - Data Center College of the Philippines">
     <Block01Navigation client:only="react" />
-    <main class="flex-1 overflow-hidden">
+    <main class="flex-1">
         <!-- Hero Section -->
-        <section class="w-full py-16 md:py-28 lg:py-36 relative overflow-hidden">
-            <div class="absolute inset-0 bg-gradient-to-b from-white via-blue-300 to-blue-300 animate-gradient"></div>
-            <div class="absolute inset-0 bg-[url('/noise.png')] opacity-20"></div>
-            <div class="container mx-auto px-4 md:px-6 relative">
-                <div class="flex flex-col items-center space-y-6 text-center">
-                    <h1 class="text-4xl md:text-6xl font-bold tracking-tighter text-white [text-shadow:_0_1px_2px_rgb(0_0_0_/_20%)] animate-fade-in">
+        <section class="relative py-24 md:py-32 overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-b from-blue-600 to-blue-800">
+                <div class="absolute inset-0 bg-[url('/noise.png')] opacity-10"></div>
+            </div>
+            <div class="relative container mx-auto px-4 md:px-6">
+                <div class="max-w-3xl mx-auto text-center" data-aos="fade-up" data-aos-duration="1000">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6">
                         Our Facilities
                     </h1>
-                    <p class="max-w-[900px] text-white/90 text-lg md:text-xl/relaxed lg:text-2xl/relaxed animate-fade-in-delay">
+                    <p class="text-xl text-blue-100 mb-8" data-aos="fade-up" data-aos-delay="200">
                         State-of-the-art learning spaces designed for your success
                     </p>
+                    <div class="animate-bounce-slow" data-aos="fade-up" data-aos-delay="400">
+                        <svg class="w-6 h-6 mx-auto text-white/70" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                        </svg>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Facilities Showcase -->
-        <section class="w-full py-16 md:py-24 bg-white">
+        <!-- Facilities Grid -->
+        <section class="py-16 md:py-24 bg-gray-50">
             <div class="container mx-auto px-4 md:px-6">
-                <div class="grid gap-12 md:grid-cols-2 lg:grid-cols-3">
-                    <!-- Computer Laboratories -->
-                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
-                        <div class="aspect-video w-full bg-[url('/images/IMG_0024.jpg')] bg-cover bg-center">
-                            <div class="absolute inset-0 bg-black/40"></div>
+                <div class="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+                    {facilities.map((facility, index) => (
+                        <div 
+                            class="group relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
+                            data-aos="fade-up"
+                            data-aos-delay={index * 100}
+                        >
+                            <div class={`aspect-video w-full bg-${facility.color}-100 relative overflow-hidden`}>
+                                <img 
+                                    src={facility.image} 
+                                    alt={facility.title}
+                                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                                />
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+                            </div>
+                            <div class="absolute bottom-0 w-full p-6">
+                                <h3 class="text-2xl font-bold text-white mb-2">{facility.title}</h3>
+                                <p class="text-white/90">{facility.description}</p>
+                            </div>
                         </div>
-                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
-                            <h3 class="text-2xl font-bold text-white">Computer Laboratories</h3>
-                            <p class="mt-2 text-white/90">Modern computer labs equipped with the latest hardware and software for hands-on learning experiences.</p>
-                        </div>
-                    </div>
-
-                    <!-- Library -->
-                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
-                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Library')] bg-cover bg-center">
-                            <div class="absolute inset-0 bg-black/40"></div>
-                        </div>
-                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
-                            <h3 class="text-2xl font-bold text-white">Library</h3>
-                            <p class="mt-2 text-white/90">A comprehensive collection of academic resources, digital materials, and quiet study spaces.</p>
-                        </div>
-                    </div>
-
-                    <!-- Student Lounge -->
-                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
-                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Student+Lounge')] bg-cover bg-center">
-                            <div class="absolute inset-0 bg-black/40"></div>
-                        </div>
-                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
-                            <h3 class="text-2xl font-bold text-white">Student Lounge</h3>
-                            <p class="mt-2 text-white/90">Comfortable spaces for relaxation, group study, and student collaboration.</p>
-                        </div>
-                    </div>
-
-                    <!-- Lecture Halls -->
-                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
-                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Lecture+Halls')] bg-cover bg-center">
-                            <div class="absolute inset-0 bg-black/40"></div>
-                        </div>
-                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
-                            <h3 class="text-2xl font-bold text-white">Lecture Halls</h3>
-                            <p class="mt-2 text-white/90">Spacious, well-equipped classrooms with modern presentation technology.</p>
-                        </div>
-                    </div>
-
-                    <!-- Innovation Lab -->
-                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
-                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Innovation+Lab')] bg-cover bg-center">
-                            <div class="absolute inset-0 bg-black/40"></div>
-                        </div>
-                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
-                            <h3 class="text-2xl font-bold text-white">Innovation Lab</h3>
-                            <p class="mt-2 text-white/90">A dedicated space for creative projects, prototyping, and technological innovation.</p>
-                        </div>
-                    </div>
-
-                    <!-- Cafeteria -->
-                    <div class="group relative overflow-hidden rounded-lg shadow-lg transition-transform hover:-translate-y-2">
-                        <div class="aspect-video w-full bg-[url('https://placehold.co/600x400/2563eb/FFFFFF/png?text=Cafeteria')] bg-cover bg-center">
-                            <div class="absolute inset-0 bg-black/40"></div>
-                        </div>
-                        <div class="absolute bottom-0 w-full bg-gradient-to-t from-black/80 to-transparent p-6">
-                            <h3 class="text-2xl font-bold text-white">Cafeteria</h3>
-                            <p class="mt-2 text-white/90">Modern dining facilities offering nutritious meals and a comfortable dining environment.</p>
-                        </div>
-                    </div>
+                    ))}
                 </div>
             </div>
         </section>
 
         <!-- Contact Section -->
-        <section class="w-full py-12 md:py-24 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+        <section class="py-16 md:py-24 bg-white" data-aos="fade-up">
             <div class="container mx-auto px-4 md:px-6 text-center">
-                <h2 class="text-3xl font-bold tracking-tighter text-slate-800 mb-6">Visit Our Campus</h2>
-                <p class="text-lg text-slate-600 mb-8">Experience our facilities firsthand. Schedule a campus tour today!</p>
-                <a href="/contact" class="inline-flex items-center justify-center rounded-md bg-blue-600 px-8 py-3 text-sm font-medium text-white shadow transition-colors hover:bg-blue-700 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-blue-700">
-                    Contact Us
+                <h2 class="text-3xl font-bold text-gray-900 mb-6" data-aos="fade-up">
+                    Experience Our Campus
+                </h2>
+                <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto" data-aos="fade-up" data-aos-delay="100">
+                    Want to see our facilities in person? Schedule a campus tour today!
+                </p>
+                <a 
+                    href="/contact" 
+                    class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-blue-600 rounded-lg shadow-lg hover:bg-blue-700 transition-all duration-300 transform hover:scale-105"
+                    data-aos="fade-up"
+                    data-aos-delay="200"
+                >
+                    Schedule a Tour
                 </a>
             </div>
         </section>
@@ -113,34 +121,12 @@ const animationClass = "opacity-0 translate-y-8";
 </Layout>
 
 <style>
-    @keyframes gradient {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
+    @keyframes bounce-slow {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-10px); }
     }
 
-    .animate-gradient {
-        background-size: 200% 200%;
-        animation: gradient 15s ease infinite;
-    }
-
-    .animate-fade-in {
-        animation: fadeIn 1s ease-out forwards;
-    }
-
-    .animate-fade-in-delay {
-        animation: fadeIn 1s ease-out 0.5s forwards;
-        opacity: 0;
-    }
-
-    @keyframes fadeIn {
-        from {
-            opacity: 0;
-            transform: translateY(20px);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
+    .animate-bounce-slow {
+        animation: bounce-slow 2s ease-in-out infinite;
     }
 </style>

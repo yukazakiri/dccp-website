@@ -115,7 +115,7 @@ const Block01Navigation = () => {
                         <div className="flex items-center gap-3">
                             <div className="hidden lg:flex lg:items-center lg:space-x-3">
                                 <Button variant="ghost" asChild>
-                                    <a href="https://dccp-portal-v1-beta.vercel.app" className="flex items-center">
+                                    <a href="/student-portal" className="flex items-center">
                                         <LogIn className="w-4 h-4 mr-2" />
                                         Student Portal
                                     </a>

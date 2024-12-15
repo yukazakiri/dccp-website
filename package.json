@@ -20,6 +20,7 @@
     "@fullcalendar/timegrid": "^6.1.15",
     "@heroicons/react": "^2.2.0",
     "@iconify-json/heroicons": "^1.2.1",
+    "@radix-ui/react-accordion": "^1.2.2",
     "@radix-ui/react-navigation-menu": "^1.2.2",
     "@radix-ui/react-scroll-area": "^1.2.2",
     "@radix-ui/react-slot": "^1.1.0",
