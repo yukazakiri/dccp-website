@@ -1,0 +1,598 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/kokonutui/block-01-nav';
+import CollapsibleSection from '../components/CollapsibleSection';
+import Footer from '../components/Footer.astro';
+
+interface Resource {
+    title: string;
+    description: string;
+    url: string;
+    category: string;
+    icon: string;
+    stars?: number;
+    author?: {
+        name: string;
+        avatar?: string;
+    };
+}
+
+const resources: Resource[] = [
+    // Research Resources
+    {
+        title: "JSTOR",
+        description: "Access to academic journals, books, and primary sources across multiple disciplines.",
+        url: "https://www.jstor.org/",
+        category: "Research",
+        icon: "📚",
+        stars: 5,
+        author: {
+            name: "JSTOR Digital Library",
+            avatar: "https://placehold.co/100x100/1e40af/FFFFFF/png?text=J"
+        }
+    },
+    {
+        title: "Google Scholar",
+        description: "Search scholarly literature across many disciplines and sources.",
+        url: "https://scholar.google.com/",
+        category: "Research",
+        icon: "🔍",
+        stars: 5,
+        author: {
+            name: "Google",
+            avatar: "https://placehold.co/100x100/4285f4/FFFFFF/png?text=G"
+        }
+    },
+    {
+        title: "Microsoft Academic",
+        description: "Free academic search engine and visualization tool for scholarly articles.",
+        url: "https://academic.microsoft.com/",
+        category: "Research",
+        icon: "🎓",
+        stars: 4,
+        author: {
+            name: "Microsoft",
+            avatar: "https://placehold.co/100x100/00a4ef/FFFFFF/png?text=M"
+        }
+    },
+    {
+        title: "ResearchGate",
+        description: "Professional network for scientists and researchers to share papers and connect.",
+        url: "https://www.researchgate.net/",
+        category: "Research",
+        icon: "🔬",
+        stars: 4,
+        author: {
+            name: "ResearchGate",
+            avatar: "https://placehold.co/100x100/00d0af/FFFFFF/png?text=R"
+        }
+    },
+    {
+        title: "Academia.edu",
+        description: "Platform for academics to share research papers and monitor their impact.",
+        url: "https://www.academia.edu/",
+        category: "Research",
+        icon: "📖",
+        stars: 4,
+        author: {
+            name: "Academia",
+            avatar: "https://placehold.co/100x100/2b5797/FFFFFF/png?text=A"
+        }
+    },
+    {
+        title: "Science Direct",
+        description: "Leading platform for peer-reviewed scholarly literature.",
+        url: "https://www.sciencedirect.com/",
+        category: "Research",
+        icon: "🔬",
+        stars: 5,
+        author: {
+            name: "Elsevier",
+            avatar: "https://placehold.co/100x100/FF6C00/FFFFFF/png?text=SD"
+        }
+    },
+    {
+        title: "IEEE Xplore",
+        description: "Digital library for technical content in engineering and technology.",
+        url: "https://ieeexplore.ieee.org/",
+        category: "Research",
+        icon: "⚡",
+        stars: 5,
+        author: {
+            name: "IEEE",
+            avatar: "https://placehold.co/100x100/00629B/FFFFFF/png?text=IEEE"
+        }
+    },
+
+    // Learning Platforms
+    {
+        title: "Khan Academy",
+        description: "Free online courses, lessons and practice in math, science, and more.",
+        url: "https://www.khanacademy.org/",
+        category: "Learning",
+        icon: "📝",
+        stars: 5,
+        author: {
+            name: "Khan Academy",
+            avatar: "https://placehold.co/100x100/14B127/FFFFFF/png?text=K"
+        }
+    },
+    {
+        title: "Coursera",
+        description: "Online courses from top universities worldwide.",
+        url: "https://www.coursera.org/",
+        category: "Learning",
+        icon: "💻",
+        stars: 5,
+        author: {
+            name: "Coursera",
+            avatar: "https://placehold.co/100x100/2a73cc/FFFFFF/png?text=C"
+        }
+    },
+    {
+        title: "edX",
+        description: "Access to high-quality courses from leading institutions.",
+        url: "https://www.edx.org/",
+        category: "Learning",
+        icon: "🎯",
+        stars: 5,
+        author: {
+            name: "edX",
+            avatar: "https://placehold.co/100x100/02262b/FFFFFF/png?text=edX"
+        }
+    },
+    {
+        title: "Udemy",
+        description: "Wide range of courses on programming, business, and creative skills.",
+        url: "https://www.udemy.com/",
+        category: "Learning",
+        icon: "💻",
+        stars: 4,
+        author: {
+            name: "Udemy",
+            avatar: "https://placehold.co/100x100/A435F0/FFFFFF/png?text=U"
+        }
+    },
+    {
+        title: "MIT OpenCourseWare",
+        description: "Free access to MIT course content.",
+        url: "https://ocw.mit.edu/",
+        category: "Learning",
+        icon: "🎓",
+        stars: 5,
+        author: {
+            name: "MIT",
+            avatar: "https://placehold.co/100x100/A31F34/FFFFFF/png?text=MIT"
+        }
+    },
+    {
+        title: "Stanford Online",
+        description: "Free online courses from Stanford University.",
+        url: "https://online.stanford.edu/free-courses",
+        category: "Learning",
+        icon: "🏛️",
+        stars: 5,
+        author: {
+            name: "Stanford University",
+            avatar: "https://placehold.co/100x100/8C1515/FFFFFF/png?text=S"
+        }
+    },
+
+    // Study Tools
+    {
+        title: "Quizlet",
+        description: "Create and study flashcards for better learning.",
+        url: "https://quizlet.com/",
+        category: "Study Tools",
+        icon: "🎴",
+        stars: 4,
+        author: {
+            name: "Quizlet",
+            avatar: "https://placehold.co/100x100/4257b2/FFFFFF/png?text=Q"
+        }
+    },
+    {
+        title: "Notion",
+        description: "All-in-one workspace for notes, tasks, and collaboration.",
+        url: "https://www.notion.so/",
+        category: "Study Tools",
+        icon: "📓",
+        stars: 5,
+        author: {
+            name: "Notion",
+            avatar: "https://placehold.co/100x100/000000/FFFFFF/png?text=N"
+        }
+    },
+    {
+        title: "Evernote",
+        description: "Note-taking app that helps you capture and prioritize ideas.",
+        url: "https://evernote.com/",
+        category: "Study Tools",
+        icon: "🐘",
+        stars: 4,
+        author: {
+            name: "Evernote",
+            avatar: "https://placehold.co/100x100/00a82d/FFFFFF/png?text=E"
+        }
+    },
+    {
+        title: "Microsoft OneNote",
+        description: "Digital notebook for capturing and organizing notes.",
+        url: "https://www.onenote.com/",
+        category: "Study Tools",
+        icon: "📔",
+        stars: 4,
+        author: {
+            name: "Microsoft",
+            avatar: "https://placehold.co/100x100/7719AA/FFFFFF/png?text=O"
+        }
+    },
+    {
+        title: "Zotero",
+        description: "Free tool to collect, organize, and cite research.",
+        url: "https://www.zotero.org/",
+        category: "Study Tools",
+        icon: "📚",
+        stars: 5,
+        author: {
+            name: "Roy Rosenzweig Center",
+            avatar: "https://placehold.co/100x100/CC2936/FFFFFF/png?text=Z"
+        }
+    },
+    {
+        title: "Mendeley",
+        description: "Reference manager and academic social network.",
+        url: "https://www.mendeley.com/",
+        category: "Study Tools",
+        icon: "📑",
+        stars: 4,
+        author: {
+            name: "Mendeley Ltd.",
+            avatar: "https://placehold.co/100x100/9D1620/FFFFFF/png?text=M"
+        }
+    },
+
+    // Reference Materials
+    {
+        title: "Encyclopedia Britannica",
+        description: "Comprehensive reference resource for research.",
+        url: "https://www.britannica.com/",
+        category: "Reference",
+        icon: "📚",
+        stars: 5,
+        author: {
+            name: "Britannica",
+            avatar: "https://placehold.co/100x100/c41230/FFFFFF/png?text=B"
+        }
+    },
+    {
+        title: "Dictionary.com",
+        description: "Online dictionary and thesaurus with word tools.",
+        url: "https://www.dictionary.com/",
+        category: "Reference",
+        icon: "📔",
+        stars: 4,
+        author: {
+            name: "Dictionary.com",
+            avatar: "https://placehold.co/100x100/051b2c/FFFFFF/png?text=D"
+        }
+    },
+    {
+        title: "Project Gutenberg",
+        description: "Free eBooks of classic literature.",
+        url: "https://www.gutenberg.org/",
+        category: "Reference",
+        icon: "📕",
+        stars: 4,
+        author: {
+            name: "Project Gutenberg",
+            avatar: "https://placehold.co/100x100/8B9467/FFFFFF/png?text=P"
+        }
+    },
+    {
+        title: "Internet Archive",
+        description: "Digital library of free books, movies, and audio.",
+        url: "https://archive.org/",
+        category: "Reference",
+        icon: "🏛️",
+        stars: 4,
+        author: {
+            name: "Internet Archive",
+            avatar: "https://placehold.co/100x100/2C2C2C/FFFFFF/png?text=IA"
+        }
+    },
+    {
+        title: "Stanford Encyclopedia of Philosophy",
+        description: "Comprehensive philosophy encyclopedia maintained by experts.",
+        url: "https://plato.stanford.edu/",
+        category: "Reference",
+        icon: "🤔",
+        stars: 5,
+        author: {
+            name: "Stanford University",
+            avatar: "https://placehold.co/100x100/8C1515/FFFFFF/png?text=SEP"
+        }
+    },
+    {
+        title: "Merriam-Webster",
+        description: "Trusted dictionary and thesaurus with word games.",
+        url: "https://www.merriam-webster.com/",
+        category: "Reference",
+        icon: "📚",
+        stars: 5,
+        author: {
+            name: "Merriam-Webster",
+            avatar: "https://placehold.co/100x100/000000/FFFFFF/png?text=MW"
+        }
+    },
+    {
+        title: "Wikipedia",
+        description: "Free online encyclopedia with millions of articles.",
+        url: "https://www.wikipedia.org/",
+        category: "Reference",
+        icon: "📖",
+        stars: 4,
+        author: {
+            name: "Wikimedia",
+            avatar: "https://placehold.co/100x100/000000/FFFFFF/png?text=W"
+        }
+    },
+
+    // Language Learning
+    {
+        title: "Duolingo",
+        description: "Fun and free language learning platform.",
+        url: "https://www.duolingo.com/",
+        category: "Language",
+        icon: "🦉",
+        stars: 5,
+        author: {
+            name: "Duolingo",
+            avatar: "https://placehold.co/100x100/58cc02/FFFFFF/png?text=D"
+        }
+    },
+    {
+        title: "Memrise",
+        description: "Language learning with spaced repetition and mnemonics.",
+        url: "https://www.memrise.com/",
+        category: "Language",
+        icon: "🌱",
+        stars: 4,
+        author: {
+            name: "Memrise",
+            avatar: "https://placehold.co/100x100/ff8f3c/FFFFFF/png?text=M"
+        }
+    },
+    {
+        title: "Babbel",
+        description: "Subscription-based language learning platform.",
+        url: "https://www.babbel.com/",
+        category: "Language",
+        icon: "🗣️",
+        stars: 4,
+        author: {
+            name: "Babbel",
+            avatar: "https://placehold.co/100x100/203d4b/FFFFFF/png?text=B"
+        }
+    },
+    {
+        title: "LingoDeer",
+        description: "Asian language learning app with structured lessons.",
+        url: "https://www.lingodeer.com/",
+        category: "Language",
+        icon: "🦌",
+        stars: 4,
+        author: {
+            name: "LingoDeer",
+            avatar: "https://placehold.co/100x100/4B9FD5/FFFFFF/png?text=LD"
+        }
+    },
+    {
+        title: "Busuu",
+        description: "Language learning with native speaker feedback.",
+        url: "https://www.busuu.com/",
+        category: "Language",
+        icon: "🗣️",
+        stars: 4,
+        author: {
+            name: "Busuu",
+            avatar: "https://placehold.co/100x100/1AA0E8/FFFFFF/png?text=B"
+        }
+    },
+
+    // Math & Science
+    {
+        title: "Wolfram Alpha",
+        description: "Computational intelligence for math, science, and more.",
+        url: "https://www.wolframalpha.com/",
+        category: "Math & Science",
+        icon: "🧮",
+        stars: 5,
+        author: {
+            name: "Wolfram",
+            avatar: "https://placehold.co/100x100/dd1100/FFFFFF/png?text=W"
+        }
+    },
+    {
+        title: "GeoGebra",
+        description: "Interactive mathematics software for learning and teaching.",
+        url: "https://www.geogebra.org/",
+        category: "Math & Science",
+        icon: "📐",
+        stars: 4,
+        author: {
+            name: "GeoGebra",
+            avatar: "https://placehold.co/100x100/9999FF/FFFFFF/png?text=G"
+        }
+    },
+    {
+        title: "Symbolab",
+        description: "Math problem solver with step-by-step explanations.",
+        url: "https://www.symbolab.com/",
+        category: "Math & Science",
+        icon: "➗",
+        stars: 4,
+        author: {
+            name: "Symbolab",
+            avatar: "https://placehold.co/100x100/FF6B6B/FFFFFF/png?text=S"
+        }
+    },
+    {
+        title: "PhET Simulations",
+        description: "Interactive science and math simulations.",
+        url: "https://phet.colorado.edu/",
+        category: "Math & Science",
+        icon: "🔬",
+        stars: 5,
+        author: {
+            name: "University of Colorado",
+            avatar: "https://placehold.co/100x100/CFB87C/FFFFFF/png?text=P"
+        }
+    },
+    {
+        title: "Brilliant",
+        description: "Interactive courses in math, science, and computer science.",
+        url: "https://brilliant.org/",
+        category: "Math & Science",
+        icon: "💡",
+        stars: 5,
+        author: {
+            name: "Brilliant.org",
+            avatar: "https://placehold.co/100x100/1AA7EC/FFFFFF/png?text=B"
+        }
+    }
+];
+
+const categories = [...new Set(resources.map(resource => resource.category))];
+
+---
+
+<Layout title="Library Resources - DCCP">
+    <Navigation client:load />
+    <CollapsibleSection client:load />
+    <main class="min-h-screen bg-gradient-to-b from-white via-blue-100 to-blue-700 pt-16">
+        <!-- Sidebar -->
+        <div class="flex">
+            <aside class="w-72 fixed h-screen bg-white/30 backdrop-blur-md border-r border-blue-100/50 pt-8 shadow-lg">
+                <div class="px-6 mb-8">
+                    <h2 class="text-xl font-bold text-blue-900 mb-2">Resources</h2>
+                    <p class="text-sm text-blue-700">Explore educational tools and platforms</p>
+                </div>
+                <nav class="px-4">
+                    <ul class="space-y-2">
+                        {categories.map(category => (
+                            <li>
+                                <a 
+                                    href={`#${category.toLowerCase().replace(' & ', '-')}`}
+                                    class="flex items-center px-4 py-3 text-blue-700 hover:bg-yellow-50 hover:text-yellow-700 rounded-lg transition-all duration-200"
+                                >
+                                    <span class="text-xl mr-3">
+                                        {category === "Research" && "🔍"}
+                                        {category === "Learning" && "📚"}
+                                        {category === "Study Tools" && "✏️"}
+                                        {category === "Reference" && "📖"}
+                                        {category === "Language" && "🗣️"}
+                                        {category === "Math & Science" && "🧮"}
+                                    </span>
+                                    <span class="font-medium">{category}</span>
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            </aside>
+
+            <!-- Main Content -->
+            <div class="ml-72 flex-1 p-8">
+                <div class="max-w-7xl mx-auto">
+                    <!-- Resources Grid -->
+                    {categories.map(category => (
+                        <section id={category.toLowerCase().replace(' & ', '-')} class="mb-16">
+                            <div class="flex items-center justify-between mb-8">
+                                <div>
+                                    <h2 class="text-2xl font-bold text-blue-900">{category}</h2>
+                                    <p class="text-blue-700 mt-1">Discover {category.toLowerCase()} resources</p>
+                                </div>
+                                <button
+                                    class="collapse-btn text-yellow-600 hover:text-yellow-700 text-sm font-medium flex items-center gap-2 group"
+                                    data-category={category}
+                                >
+                                    <span class="collapse-text">Collapse</span>
+                                    <svg 
+                                        class="w-4 h-4 transform transition-transform duration-300" 
+                                        fill="none" 
+                                        stroke="currentColor" 
+                                        viewBox="0 0 24 24"
+                                    >
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                                    </svg>
+                                </button>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 transition-all duration-500 ease-in-out section-content" data-category={category}>
+                                {resources
+                                    .filter(resource => resource.category === category)
+                                    .map(resource => (
+                                        <a 
+                                            href={resource.url}
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                            class="group bg-white/90 backdrop-blur-sm rounded-2xl border border-yellow-100 hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                                        >
+                                            <div class="p-6">
+                                                <div class="flex items-center justify-between mb-6">
+                                                    <div class="flex items-center">
+                                                        <span class="text-2xl mr-3">{resource.icon}</span>
+                                                        <div>
+                                                            <h3 class="text-lg font-semibold text-blue-900 group-hover:text-blue-700">{resource.title}</h3>
+                                                            <div class="flex items-center mt-1">
+                                                                {resource.stars && (
+                                                                    <div class="flex items-center">
+                                                                        {[...Array(resource.stars)].map(() => (
+                                                                            <svg class="w-4 h-4 text-yellow-500" fill="currentColor" viewBox="0 0 20 20">
+                                                                                <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                                                                            </svg>
+                                                                        ))}
+                                                                    </div>
+                                                                )}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    {resource.author?.avatar && (
+                                                        <img 
+                                                            src={resource.author.avatar} 
+                                                            alt={resource.author.name}
+                                                            class="w-10 h-10 rounded-full"
+                                                        />
+                                                    )}
+                                                </div>
+                                                <p class="text-blue-700 text-sm line-clamp-2">{resource.description}</p>
+                                            </div>
+                                        </a>
+                                    ))}
+                            </div>
+                        </section>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </main>
+    <Footer />
+</Layout>
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    .section-content {
+        max-height: 1000px;
+        opacity: 1;
+        transition: all 0.5s ease-in-out;
+    }
+
+    .section-content.collapsed {
+        max-height: 0;
+        opacity: 0;
+        overflow: hidden;
+    }
+</style>

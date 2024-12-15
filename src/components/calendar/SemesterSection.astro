@@ -1,34 +1,148 @@
 ---
 import type { Semester } from '../../data/academic-calendar';
-import { format, parseISO } from 'date-fns';
+import { format, parseISO, isSameMonth } from 'date-fns';
 import CalendarEvent from './CalendarEvent.astro';
 
 interface Props {
   semester: Semester;
 }
 
+declare global {
+  interface Window {
+    filterEventsByMonth: (targetDate: Date | null) => void;
+  }
+}
+
 const { semester } = Astro.props;
 
-const formatDate = (dateStr: string) => {
-  const date = parseISO(dateStr);
-  return format(date, 'MMMM dd, yyyy');
-};
+// Group events by month
+const eventsByMonth = semester.events.reduce((acc, event) => {
+  const monthKey = format(parseISO(event.startDate), 'yyyy-MM');
+  if (!acc[monthKey]) {
+    acc[monthKey] = [];
+  }
+  acc[monthKey].push(event);
+  return acc;
+}, {} as Record<string, typeof semester.events>);
 
+// Sort months
+const sortedMonths = Object.keys(eventsByMonth).sort();
 ---
 
-<div class="mb-12">
-  <div class="flex items-center justify-between mb-6">
-    <div>
+<div class="bg-white rounded-lg shadow-sm">
+  {/* Navigation Bar */}
+  <div class="border-b border-gray-200 px-6 py-4">
+    <div class="flex items-center justify-between">
       <h2 class="text-2xl font-bold text-gray-900">{semester.name}</h2>
-      <p class="text-gray-600 mt-1">
-        {formatDate(semester.startDate)} - {formatDate(semester.endDate)}
-      </p>
+      <div class="flex space-x-4">
+        {sortedMonths.map(monthKey => {
+          const monthDate = parseISO(monthKey + '-01');
+          const monthAbbrev = format(monthDate, 'MMM');
+          return (
+            <button
+              onclick={`filterEventsByMonth(new Date('${monthKey}-01'))`}
+              class="px-3 py-1 text-sm rounded-full hover:bg-gray-100 transition-colors"
+              data-month-button={monthKey}
+            >
+              {monthAbbrev}
+            </button>
+          );
+        })}
+        <button
+          onclick="filterEventsByMonth(null)"
+          class="px-3 py-1 text-sm rounded-full hover:bg-gray-100 transition-colors"
+        >
+          All
+        </button>
+      </div>
     </div>
   </div>
 
-  <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-    {semester.events.map((event) => (
-      <CalendarEvent event={event} />
-    ))}
+  {/* Events Grid */}
+  <div class="p-6 space-y-12" data-semester-events>
+    {sortedMonths.map(monthKey => {
+      const monthEvents = eventsByMonth[monthKey];
+      const monthDate = parseISO(monthKey + '-01');
+      const monthName = format(monthDate, 'MMMM yyyy');
+      
+      return (
+        <div class="relative" data-month={monthKey}>
+          <div class="sticky top-24 z-10 bg-gradient-to-b from-white via-white to-transparent pb-6">
+            <h3 class="text-xl font-bold text-gray-900 px-4 py-2 inline-block rounded-lg">
+              {monthName}
+            </h3>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 px-4">
+            {monthEvents
+              .sort((a, b) => parseISO(a.startDate).getTime() - parseISO(b.startDate).getTime())
+              .map(event => (
+                <div 
+                  data-date={event.startDate}
+                  class="transform transition-all duration-200 hover:-translate-y-1 hover:shadow-lg"
+                >
+                  <CalendarEvent event={event} />
+                </div>
+              ))
+            }
+          </div>
+        </div>
+      );
+    })}
   </div>
 </div>
+
+<script>
+  import { format } from 'date-fns';
+
+  // Function to show/hide events based on selected month
+  function filterEventsByMonth(targetDate: Date | null) {
+    const allMonthSections = document.querySelectorAll('[data-month]');
+    
+    if (!targetDate) {
+      // Show all months if no target date is provided
+      allMonthSections.forEach(section => {
+        section.classList.remove('hidden');
+        section.classList.add('animate-fadeIn');
+      });
+      return;
+    }
+
+    const targetMonthKey = format(targetDate, 'yyyy-MM');
+    
+    allMonthSections.forEach(section => {
+      const monthKey = section.getAttribute('data-month');
+      if (monthKey === targetMonthKey) {
+        section.classList.remove('hidden');
+        section.classList.add('animate-fadeIn');
+      } else {
+        section.classList.add('hidden');
+        section.classList.remove('animate-fadeIn');
+      }
+    });
+  }
+
+  // Export the function for use in the main calendar page
+  window.filterEventsByMonth = filterEventsByMonth;
+
+  // Show all events by default
+  window.addEventListener('DOMContentLoaded', () => {
+    filterEventsByMonth(null);
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.3s ease-out forwards;
+  }
+</style>
